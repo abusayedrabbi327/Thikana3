@@ -1,8 +1,8 @@
-# Thikana 🏠
+# Thikana 
 
 **Thikana** is a comprehensive product marketplace and property listing platform. It allows users to buy, sell, and rent items and properties with ease. The platform features role-based access control, real-time messaging, secure transactions, and NID verification for enhanced trust and safety.
 
-## 🚀 Features
+##  Features
 
 - **Multi-Category Marketplace**: Support for furniture, appliances, electronics, house rentals, and more.
 - **Role-Based Access**: Specialized functionality for **Buyers**, **Sellers**, and **Admins**.
@@ -13,7 +13,7 @@
 - **Admin Dashboard**: Tools for managing users, approving listings, and monitoring platform activity.
 - **Responsive Design**: Modern and sleek UI built with Tailwind CSS.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 - **Framework**: React 19 (Vite)
@@ -31,7 +31,7 @@
 - **Email**: Nodemailer
 - **Authentication**: JWT & Bcryptjs
 
-## 📦 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (Latest LTS)
@@ -94,7 +94,7 @@ JWT_SECRET=your_jwt_secret
    npm run dev
    ```
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 Thikana/
@@ -110,12 +110,11 @@ Thikana/
     ├── pages/          # Page components
     └── services/       # API interaction layer
 ```
+##  Contributing
 
-## 🤝 Contributing
+Contributions are welcome! Please feel free to submit a Pull Request
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 🗺️ Future Roadmap
+## Future Roadmap
 
 - **Automated NID Verification**: Integration with OCR APIs (like Google Cloud Vision or specialized local APIs) to automate identity validation.
 - **Dynamic Delivery API**: Integration with local logistics providers (e.g., RedX, Pathao) for real-time delivery fee calculation and automated courier booking.
