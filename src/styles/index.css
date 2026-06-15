@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── View Transitions: Circular Reveal ─────────────────────────────────────
+   Override the browser's default crossfade so only our JS clip-path animation
+   runs. The ::view-transition-new(root) is animated from JS via the Web
+   Animations API (see ThemeContext.jsx).
+──────────────────────────────────────────────────────────────────────────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Keep the new theme layer on top during the reveal */
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Respect users who prefer reduced motion — instant swap */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+@layer base {
+  /* ── LIGHT MODE: Crimson & Chalk ────────────────────────
+     #DC143C  Crimson    → primary accent
+     #F2EFE7  Chalk      → background
+     #1A0008  Deep Wine  → main text / headings
+     #8C1A2E  Dark Rose  → muted text
+     #E8E4DC  Warm Stone → borders / card bg
+  ─────────────────────────────────────────────────────── */
+  :root {
+    --theme-bg:              242 239 231;     /* #F2EFE7 chalk */
+    --theme-card:            255 255 255;     /* white card */
+    --theme-text:            26   0   8;      /* deep wine */
+    --theme-text-muted:      140  26  46;     /* dark rose muted */
+    --theme-border:          232 228 220;     /* warm stone border */
+    --theme-primary:         220  20  60;     /* #DC143C crimson */
+    --theme-primary-hover:   185  10  40;     /* crimson darker */
+    --theme-primary-text:    255 255 255;     /* white on crimson */
+    --hero-grad-from:        60   5  15;      /* deep crimson-black */
+    --hero-grad-mid:         110  20  35;     /* warm crimson mid */
+    --hero-grad-to:          180  60  30;     /* ember orange edge */
+    --glass-blob-1:          220  20  60;     /* crimson blob */
+    --glass-blob-2:          255 107  53;     /* ember blob */
+    --hero-bg:               10   3   6;      /* very dark base */
+    --hero-bloom-1:          220  20  60;     /* crimson bloom (light mode) */
+    --hero-bloom-2:          255 107  53;     /* ember secondary bloom */
+    --shimmer-a:             #DC143C;         /* shimmer start */
+    --shimmer-b:             #ff6b7a;         /* shimmer mid highlight */
+    --shimmer-c:             #DC143C;         /* shimmer end */
+  }
+
+  /* ── DARK MODE: Midnight & Ember ────────────────────────
+     #0D1117  Midnight   → background
+     #FF6B35  Ember      → primary accent
+     #F0F0F0  Near White → main text
+     #8B949E  Cool Grey  → muted text
+     #161B22  Dark Layer → card surface
+  ─────────────────────────────────────────────────────── */
+  .dark {
+    --theme-bg:              13  17  23;      /* #0D1117 midnight */
+    --theme-card:            22  27  34;      /* #161B22 dark layer */
+    --theme-text:            240 240 240;     /* near white */
+    --theme-text-muted:      139 148 158;     /* cool grey */
+    --theme-border:          48  54  61;      /* dark border */
+    --theme-primary:         255 107  53;     /* #FF6B35 ember */
+    --theme-primary-hover:   255 130  75;     /* ember lighter */
+    --theme-primary-text:    13  17  23;      /* midnight on ember */
+    --hero-grad-from:        13  17  23;      /* midnight */
+    --hero-grad-mid:         22  15  10;      /* dark warm */
+    --hero-grad-to:          40  20   5;      /* ember edge */
+    --glass-blob-1:          255 107  53;     /* ember blob */
+    --glass-blob-2:          220  20  60;     /* crimson blob */
+    --hero-bg:               13  17  23;      /* midnight base */
+    --hero-bloom-1:          255 107  53;     /* ember bloom (dark mode) */
+    --hero-bloom-2:          220  20  60;     /* crimson secondary bloom */
+    --shimmer-a:             #FF6B35;         /* ember shimmer start */
+    --shimmer-b:             #ffb380;         /* shimmer mid highlight */
+    --shimmer-c:             #FF6B35;         /* ember shimmer end */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    @apply bg-theme-bg text-theme-text;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  /* Hide native browser password reveal eye (Edge / IE) */
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none !important;
+  }
+  ::selection {
+    background-color: rgb(var(--theme-primary) / 0.3);
+  }
+}
+
+@layer components {
+  /* ── Buttons ─────────────────────────── */
+  .btn-primary {
+    @apply bg-theme-primary hover:bg-theme-primary-hover text-theme-primary-text font-semibold
+      px-5 py-2.5 rounded-lg transition-all duration-200 active:scale-95
+      focus:outline-none focus:ring-2 focus:ring-theme-primary focus:ring-offset-2
+      dark:focus:ring-offset-theme-bg
+      inline-flex items-center gap-2;
+  }
+  .btn-secondary {
+    @apply border border-theme-primary text-theme-primary hover:bg-theme-primary/10
+      font-semibold px-5 py-2.5 rounded-lg transition-all duration-200
+      active:scale-95 focus:outline-none inline-flex items-center gap-2;
+  }
+  .btn-ghost {
+    @apply text-theme-muted hover:text-theme-primary font-medium px-3 py-2
+      rounded-lg transition-colors duration-200 focus:outline-none;
+  }
+
+  /* ── Cards ────────────────────────────── */
+  .card {
+    @apply bg-theme-card rounded-2xl
+      border border-theme-border
+      shadow-sm hover:shadow-md dark:shadow-none dark:hover:shadow-lg dark:hover:shadow-theme-primary/5
+      transition-all duration-300 overflow-hidden;
+  }
+
+  /* ── Inputs ──────────────────────────── */
+  .input-field {
+    @apply w-full bg-theme-bg
+      border border-theme-border
+      text-theme-text
+      placeholder-theme-muted
+      rounded-xl px-4 py-3
+      focus:outline-none focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/20
+      focus:bg-theme-card
+      transition-all duration-200 text-sm;
+  }
+
+  /* Glass-style input for auth pages */
+  .glass-input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    color: #ffffff;
+    border-radius: 0.875rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .glass-input::placeholder { color: rgba(255,255,255,0.35); }
+  .glass-input:focus {
+    border-color: rgb(var(--theme-primary));
+    background: rgba(255,255,255,0.11);
+    box-shadow: 0 0 0 3px rgb(var(--theme-primary)/0.15);
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+
+  /* ── Badges ──────────────────────────── */
+  .badge-verified {
+    @apply inline-flex items-center gap-1 bg-emerald-50 dark:bg-emerald-950/50
+      text-emerald-600 border border-emerald-200 dark:border-emerald-800
+      rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  .badge-nid {
+    @apply inline-flex items-center gap-1 bg-blue-50 dark:bg-blue-950/50
+      text-blue-600 border border-blue-200 dark:border-blue-800
+      rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  /* ── Typography ──────────────────────── */
+  .section-label {
+    @apply text-theme-primary text-xs font-bold uppercase tracking-widest mb-1;
+  }
+  .section-heading {
+    @apply text-2xl font-bold text-theme-text;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-theme-primary to-theme-primary-hover bg-clip-text text-transparent;
+  }
+
+  /* ── Nav ─────────────────────────────── */
+  .nav-bg {
+    @apply bg-theme-card border-b border-transparent;
+  }
+  .nav-bg-scrolled {
+    @apply shadow-md dark:shadow-none border-b border-theme-border;
+  }
+
+  /* ── Profile page utilities ─────────── */
+  .stat-card {
+    @apply bg-theme-card border border-theme-border
+      rounded-2xl p-5 text-center
+      transition-all duration-300 hover:shadow-md dark:shadow-none;
+  }
+  .menu-item {
+    @apply flex items-center gap-4 px-5 py-4
+      bg-theme-card border border-theme-border
+      rounded-xl text-theme-text text-sm font-medium
+      hover:border-theme-primary/30
+      hover:bg-theme-primary/5
+      hover:text-theme-primary
+      transition-all duration-200 cursor-pointer;
+  }
+  .menu-item-danger {
+    @apply flex items-center gap-4 px-5 py-4
+      bg-theme-card border border-theme-border
+      rounded-xl text-red-500 text-sm font-medium
+      hover:border-red-200 dark:hover:border-red-800/60
+      hover:bg-red-50 dark:hover:bg-red-900/10
+      transition-all duration-200 cursor-pointer;
+  }
+
+  .skeleton-block {
+    @apply relative overflow-hidden rounded-xl bg-theme-border/70;
+  }
+  .skeleton-block::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 1.5s infinite;
+  }
+  .dark .skeleton-block::after {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+
+@layer utilities {
+  .animate-fade-in  { animation: fadeIn 0.3s ease-out; }
+  .animate-slide-up { animation: slideUp 0.4s ease-out; }
+  .animate-modal-in { animation: modalIn 0.3s ease-out; }
+
+  @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  @keyframes shimmer { to { transform: translateX(200%); } }
+  @keyframes typingDot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  .animate-scale-in { animation: scaleIn 0.25s ease-out; }
+
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  @keyframes titleFadeUp {
+    0% { opacity: 0; transform: translateY(40px) scale(0.95); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+  }
+  @keyframes goldShimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .animate-title-1 { animation: titleFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+  .animate-title-2 { animation: titleFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; opacity: 0; }
+  .animate-title-3 { animation: titleFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards; opacity: 0; }
+
+  /* Theme-aware shimmer — crimson in light, ember in dark */
+  .text-gold-shimmer,
+  .text-primary-shimmer {
+    background: linear-gradient(to right, var(--shimmer-a) 20%, var(--shimmer-b) 45%, var(--shimmer-b) 55%, var(--shimmer-c) 80%);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: goldShimmer 3.5s linear infinite;
+  }
+
+
+  /* ── Glass surface utilities ──────────────────────────── */
+
+  /* Navbar dropdown — glass, theme-adaptive */
+  .dropdown-panel {
+    background: rgb(var(--theme-card) / 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgb(var(--theme-border) / 0.7);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  /* Glass card — content cards on dark/gradient backgrounds */
+  .glass-card {
+    background: rgba(0,0,0,0.28);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  /* Glass modal — heavy blur for dialogs */
+  .glass-modal {
+    background: rgb(var(--theme-card) / 0.9);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgb(var(--theme-border) / 0.6);
+    border-radius: 1.75rem;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+
+  /* Glass panel — sidebar / filter panels */
+  .glass-panel {
+    background: rgb(var(--theme-card) / 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgb(var(--theme-border) / 0.6);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  /* Glass tag — attribute chips, small badges */
+  .glass-tag {
+    background: rgb(var(--theme-bg) / 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgb(var(--theme-border));
+    border-radius: 9999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    color: rgb(var(--theme-text-muted));
+  }
+
+  /* Modal overlay */
+  .glass-overlay {
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* Masonry Grid */
+  .masonry-grid {
+    column-count: 2;
+    column-gap: 1rem;
+  }
+  @media (min-width: 640px) { .masonry-grid { column-count: 3; } }
+  @media (min-width: 768px) { .masonry-grid { column-count: 4; } }
+  @media (min-width: 1024px) { .masonry-grid { column-count: 5; } }
+  
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Leaflet Custom Styling ──────────────────────────── */
+  .leaflet-popup-content-wrapper {
+    @apply bg-theme-card text-theme-text border border-theme-border shadow-xl rounded-2xl !important;
+  }
+  .leaflet-popup-tip {
+    @apply bg-theme-card border-t border-l border-theme-border shadow-xl !important;
+  }
+  .leaflet-popup-content {
+    @apply font-bold text-sm m-3 !important;
+  }
+  .leaflet-container {
+    @apply font-sans !important;
+  }
+  .leaflet-control-zoom a {
+    @apply !bg-theme-card !text-theme-text !border-theme-border hover:!bg-theme-bg transition-colors !important;
+  }
+  .leaflet-bar {
+    @apply !border-theme-border !shadow-sm overflow-hidden rounded-xl !important;
+  }
+
+  /* ── Liquid Glass Utilities ──────────────────────────── */
+  .liquid-glass {
+    background: rgba(255,255,255,0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+    position: relative;
+    /* overflow: hidden; -- removing this so dropdowns can overflow if needed, or applying it per component */
+  }
+  .liquid-glass::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%,
+    rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%,
+    rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%,
+    rgba(255,255,255,0.45) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .liquid-glass-strong {
+    background: rgba(255,255,255,0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    border: none;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.15);
+    position: relative;
+  }
+  .liquid-glass-strong::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+    rgba(255,255,255,0.5) 0%,
+    rgba(255,255,255,0.2) 20%,
+    rgba(255,255,255,0) 40%,
+    rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.2) 80%,
+    rgba(255,255,255,0.5) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Inverted variants for light mode functionality where needed */
+  .dark .liquid-glass-invert {
+    /* Same as liquid-glass in dark mode */
+    background: rgba(255,255,255,0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+  }
+  .dark .liquid-glass-invert::before {
+    background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+  }
+
+  html:not(.dark) .liquid-glass-invert {
+    /* Inverted for light mode */
+    background: rgba(0,0,0,0.01);
+    background-blend-mode: multiply;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+  }
+  html:not(.dark) .liquid-glass-invert::before {
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 20%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.05) 80%, rgba(0,0,0,0.2) 100%);
+  }
+
+}

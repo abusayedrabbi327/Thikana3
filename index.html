@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/thikana-logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Thikana - Bangladesh's unified housing and home essentials marketplace. Find flats to rent, buy properties, and shop home essentials — all in one place." />
+    <meta name="keywords" content="Bangladesh housing, rent flat Dhaka, buy apartment, home essentials, Thikana marketplace" />
+    <meta property="og:title" content="Thikana - Find Your Perfect Home in Bangladesh" />
+    <meta property="og:description" content="Bangladesh's unified housing and home essentials marketplace. Powered by trust, verified listings." />
+    <title>Thikana — Bangladesh's Trusted Housing & Home Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script>
+      (function() {
+        try {
+          var isDark = localStorage.getItem('thikana_theme') === 'dark';
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
