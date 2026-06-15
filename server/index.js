@@ -33,6 +33,40 @@ initSocket(server)
 app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173', credentials: true }))
 app.use(express.json({ limit: '50mb' }))
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))
+// Sibling uploads fallback middleware to load files from other versions (e.g. Thikana)
+app.use('/uploads', (req, res, next) => {
+  const fs = require('fs')
+  if (req.path.includes('..')) {
+    return next()
+  }
+  const localPath = path.join(__dirname, 'uploads', req.path)
+  if (fs.existsSync(localPath)) {
+    return next()
+  }
+  try {
+    const parentDir = path.resolve(__dirname, '..', '..') // 'd:\UIU\13 trimester\Mobile app'
+    const siblings = fs.readdirSync(parentDir)
+    for (const sib of siblings) {
+      const sibPath = path.join(parentDir, sib)
+      const stat = fs.statSync(sibPath)
+      if (stat.isDirectory() && sib !== path.basename(path.resolve(__dirname, '..'))) {
+        const possiblePaths = [
+          path.join(sibPath, 'server', 'uploads', req.path),
+          path.join(sibPath, 'uploads', req.path)
+        ]
+        for (const p of possiblePaths) {
+          if (fs.existsSync(p)) {
+            return res.sendFile(p)
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.error('[uploads fallback error]', err)
+  }
+  next()
+})
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), { maxAge: '7d', immutable: true }))
 
 app.use('/api/auth', authRoutes)
