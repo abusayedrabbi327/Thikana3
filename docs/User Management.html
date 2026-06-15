@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ecedf8",
+                    "error-container": "#ffdad6",
+                    "text-muted-dark": "#93A6C5",
+                    "info-500": "#0EA5E9",
+                    "bg-muted-light": "#F2F4F8",
+                    "secondary": "#505f76",
+                    "border-default-light": "#D9E0EA",
+                    "border-default-dark": "#2B3A56",
+                    "text-secondary-dark": "#C3D0E4",
+                    "on-primary-container": "#fffdff",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d0e1fb",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary-fixed": "#d3e4fe",
+                    "surface-dim": "#d8d9e4",
+                    "text-primary-dark": "#E6EDF8",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "inverse-surface": "#2d3038",
+                    "primary-fixed": "#d7e2ff",
+                    "primary-container": "#0b72e7",
+                    "bg-app-light": "#F6F7FB",
+                    "text-muted-light": "#64748B",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "outline": "#727785",
+                    "tertiary-fixed-dim": "#ffb694",
+                    "on-surface": "#181c23",
+                    "danger-500": "#D92D20",
+                    "on-tertiary": "#ffffff",
+                    "text-secondary-light": "#334155",
+                    "on-background": "#181c23",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-container": "#fffdff",
+                    "bg-panel-light": "#FFFFFF",
+                    "surface-bright": "#f9f9ff",
+                    "tertiary-container": "#c55102",
+                    "bg-panel-dark": "#121A2B",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#351000",
+                    "primary": "#005abb",
+                    "surface-tint": "#005bbe",
+                    "on-primary-fixed-variant": "#004491",
+                    "text-primary-light": "#0F172A",
+                    "on-primary-fixed": "#001a40",
+                    "border-strong-light": "#B8C3D6",
+                    "surface-container-high": "#e6e8f2",
+                    "inverse-on-surface": "#eff0fa",
+                    "on-surface-variant": "#414754",
+                    "bg-app-dark": "#0B1220",
+                    "primary-fixed-dim": "#acc7ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "tertiary": "#9e3f00",
+                    "surface-container-lowest": "#ffffff",
+                    "bg-muted-dark": "#1D2940",
+                    "surface-variant": "#e0e2ec",
+                    "border-strong-dark": "#3A4B6B",
+                    "success-500": "#1F9D55",
+                    "on-secondary-container": "#54647a",
+                    "surface-container-highest": "#e0e2ec",
+                    "outline-variant": "#c1c6d6",
+                    "inverse-primary": "#acc7ff",
+                    "warning-500": "#D97706",
+                    "background": "#f9f9ff",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f2f3fd",
+                    "secondary-fixed-dim": "#b7c8e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gap-sm": "8px",
+                    "base": "8px",
+                    "gap-xs": "4px",
+                    "gap-md": "16px",
+                    "gap-lg": "24px",
+                    "page-padding-lg": "24px",
+                    "page-padding-sm": "16px",
+                    "page-padding-md": "20px"
+            },
+            "fontFamily": {
+                    "data-mono": ["JetBrains Mono"],
+                    "section-title": ["Plus Jakarta Sans"],
+                    "body-main": ["Plus Jakarta Sans"],
+                    "small-meta": ["Plus Jakarta Sans"],
+                    "page-title": ["Plus Jakarta Sans"],
+                    "card-title": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "data-mono": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "section-title": ["22px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-main": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "small-meta": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "page-title": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "card-title": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #D9E0EA; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-bg-app-light text-text-primary-light min-h-screen">
+<!-- SideNavBar -->
+<aside class="docked left-0 h-full w-64 fixed z-50 bg-bg-panel-light shadow-sm flex flex-col py-page-padding-lg border-r border-border-default-light">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+</div>
+<div>
+<h2 class="font-section-title text-section-title text-primary leading-none">Thikana</h2>
+<p class="font-small-meta text-small-meta text-text-muted-light uppercase tracking-wider">Admin Console</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container transition-colors duration-120 active:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-main text-body-main">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-120 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-body-main text-body-main">User Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container transition-colors duration-120 active:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="font-body-main text-body-main">KYC Verification</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container transition-colors duration-120 active:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-main text-body-main">Product Moderation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container transition-colors duration-120 active:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-main text-body-main">Audit Logs</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-1">
+<button class="w-full mb-6 bg-primary text-on-primary font-bold py-3 px-4 rounded-xl shadow-lg hover:opacity-90 active:scale-95 transition-all">
+                New Report
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container transition-colors duration-120 rounded-lg" href="#">
+<span class="material-symbols-outlined">headset_mic</span>
+<span class="font-body-main text-body-main">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-danger-500 hover:bg-error-container/20 transition-colors duration-120 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-main text-body-main">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="docked full-width top-0 sticky z-40 bg-bg-panel-light shadow-sm w-full">
+<div class="flex justify-between items-center h-16 px-page-padding-lg w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted-light group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-main focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search users by name, email, or ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-text-muted-light hover:bg-surface-container-low transition-colors rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-text-muted-light hover:bg-surface-container-low transition-colors rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 text-text-muted-light hover:bg-surface-container-low transition-colors rounded-full">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-border-default-light mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-body-main font-bold text-primary leading-tight">Sarah Jenkins</p>
+<p class="text-small-meta text-text-muted-light">Senior Admin</p>
+</div>
+<img alt="Administrator Avatar" class="w-10 h-10 rounded-full border-2 border-primary/10 object-cover" data-alt="A professional headshot of a female administrator with a confident expression, set against a clean, soft-focus office background. The lighting is bright and even, highlighting her professional attire. The overall aesthetic is clean, corporate, and high-quality, mirroring a modern enterprise software environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDek3CiuLPChLVX9IQsXvfjFjEsGbKkEdp3HS4N5s3queKDnPttwzBSpudtAz_eYOLDrOACH94iW4aPz5zjhEUa6hToAi01mVFVcjNaWLRKEFP3N3WdbpDT0SQ5bJvgaArR82mjupR36iP0PXMD3hTsi0mdOVopdVlfMVBb-yvtJvgHnGEDXerSD2xs5GM-2FCBfxzezYqap7MjnUatIuP9wSul0JsJZAq59VF9v6F0rXpqZ_bPnuwDfbOlTlNTGlKnTK04a01ByyOT"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-page-padding-lg max-w-[1440px] mx-auto">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="font-page-title text-page-title text-text-primary-light">User Management</h1>
+<p class="text-text-muted-light mt-1">Review, moderate, and manage administrative access across the platform.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-border-default-light rounded-lg text-text-secondary-light font-bold hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+<span>Filters</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-border-default-light rounded-lg text-text-secondary-light font-bold hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Export CSV</span>
+</button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gap-lg mb-8">
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light">
+<p class="text-small-meta font-bold text-text-muted-light uppercase tracking-wider mb-2">Total Users</p>
+<div class="flex items-end gap-3">
+<span class="text-[32px] font-bold text-text-primary-light leading-none">24,512</span>
+<span class="text-success-500 text-small-meta font-bold flex items-center mb-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12%
+                        </span>
+</div>
+</div>
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light">
+<p class="text-small-meta font-bold text-text-muted-light uppercase tracking-wider mb-2">Active Now</p>
+<div class="flex items-end gap-3">
+<span class="text-[32px] font-bold text-text-primary-light leading-none">1,842</span>
+<span class="text-success-500 text-small-meta font-bold flex items-center mb-1">
+<span class="material-symbols-outlined text-sm">circle</span> Live
+                        </span>
+</div>
+</div>
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light">
+<p class="text-small-meta font-bold text-text-muted-light uppercase tracking-wider mb-2">Pending KYC</p>
+<div class="flex items-end gap-3">
+<span class="text-[32px] font-bold text-text-primary-light leading-none">156</span>
+<span class="text-warning-500 text-small-meta font-bold flex items-center mb-1">
+                            High Priority
+                        </span>
+</div>
+</div>
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light">
+<p class="text-small-meta font-bold text-text-muted-light uppercase tracking-wider mb-2">Flagged Accounts</p>
+<div class="flex items-end gap-3">
+<span class="text-[32px] font-bold text-text-primary-light leading-none">42</span>
+<span class="text-danger-500 text-small-meta font-bold flex items-center mb-1">
+<span class="material-symbols-outlined text-sm">warning</span> Action Req.
+                        </span>
+</div>
+</div>
+</div>
+<!-- Users Table Section -->
+<div class="bg-bg-panel-light rounded-xl shadow-sm border border-border-default-light overflow-hidden">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-border-default-light sticky top-0 z-10">
+<th class="px-6 py-4 font-bold text-small-meta text-text-muted-light uppercase tracking-wider">User</th>
+<th class="px-6 py-4 font-bold text-small-meta text-text-muted-light uppercase tracking-wider">Role</th>
+<th class="px-6 py-4 font-bold text-small-meta text-text-muted-light uppercase tracking-wider">Verification Status</th>
+<th class="px-6 py-4 font-bold text-small-meta text-text-muted-light uppercase tracking-wider">Account Flags</th>
+<th class="px-6 py-4 font-bold text-small-meta text-text-muted-light uppercase tracking-wider">Last Login</th>
+<th class="px-6 py-4 font-bold text-small-meta text-text-muted-light uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-default-light">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container">AK</div>
+<div>
+<p class="text-body-main font-bold text-text-primary-light">Arjun Kapoor</p>
+<p class="text-small-meta text-text-muted-light">arjun.k@thikana.io</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-main text-text-secondary-light">Lead Architect</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-success-500/10 text-success-500 rounded-full w-fit">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-small-meta font-bold">Verified</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-small-meta text-text-muted-light">None</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-body-main text-text-secondary-light font-data-mono">2023-10-24 14:32</p>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors group-hover:text-primary">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 (Flagged) -->
+<tr class="hover:bg-surface-container-lowest transition-colors group bg-error-container/5">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="User" class="w-10 h-10 rounded-full object-cover" data-alt="A close-up portrait of a middle-aged man with a professional demeanor, looking slightly off-camera. The lighting is soft and natural, emphasizing a high-end corporate style. The background is a blurred modern office space with cool tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvpXMO0aFl8tNl-aauiFbFzMR_G2dbhhNJRShQcIy1Jw6faj53TpriwxLZwhgBzHPza390m6L0Ds287_JZuzn3eoPnFVWf83oTe2o5z1T4ROZ_2O7ShrxnVftEHd9nwJ5b6AVsOVCB0VWByVwzTQBJMTMlCjVAQ4RmgFU9oCVWfdVnLD894ED-7EdnquXEVzI4R9WLkjZ-NkcciopQpX4f240Y2Nc1yGlqmA_bBWsNrVvyLTOOrjhfaVMO_phZa_rWpWb4hus5wryP"/>
+<div>
+<p class="text-body-main font-bold text-text-primary-light">Marcus Thorne</p>
+<p class="text-small-meta text-text-muted-light">m.thorne@global-ex.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-main text-text-secondary-light">Global Partner</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-warning-500/10 text-warning-500 rounded-full w-fit">
+<span class="material-symbols-outlined text-[16px]">pending_actions</span>
+<span class="text-small-meta font-bold">Pending Re-scan</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-danger-500">
+<span class="material-symbols-outlined text-[18px]">report</span>
+<span class="text-small-meta font-bold">Multiple Failed Logins</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-body-main text-text-secondary-light font-data-mono">2023-10-25 09:12</p>
+</td>
+<td class="px-6 py-4 text-right relative">
+<button class="p-2 hover:bg-error-container/20 text-danger-500 rounded-lg transition-colors flex items-center gap-2 ml-auto">
+<span class="material-symbols-outlined text-[20px]">block</span>
+<span class="text-small-meta font-bold">Suspend</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center font-bold text-on-tertiary-fixed-variant">LS</div>
+<div>
+<p class="text-body-main font-bold text-text-primary-light">Lila Srivastava</p>
+<p class="text-small-meta text-text-muted-light">lila.s@thikana.io</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-main text-text-secondary-light">Field Agent</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-success-500/10 text-success-500 rounded-full w-fit">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-small-meta font-bold">Verified</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-small-meta text-text-muted-light">None</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-body-main text-text-secondary-light font-data-mono">2023-10-24 18:55</p>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors group-hover:text-primary">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="User" class="w-10 h-10 rounded-full object-cover" data-alt="A crisp, high-resolution portrait of a young man with a slight smile, wearing a modern tech-casual outfit. The lighting is bright and cheerful, using high-key studio techniques to create a light-mode friendly visual. The background is a soft blue gradient, fitting the primary brand colors of Thikana." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPDPOClA32-wwDTURFn5SvnnQ4tJMWtQBvL9puWvmrIRv-VLXtIkHVr_b5R1nICo5LOFA10uwwGMuY6X4ULx3AHdZG4rXuiHK2SgzCw9hMN22lSUc2yKadWO2aE9X1AMKw0ezp3Nvemt_-z61bIIu2gI1B_7CfX48XXtbc6GDPBIS7kt3dJE2tz_dSiHADgcDy2oKUCL7EWQtM1ENYRlZ8n72SUEJBbCRyRzKh_SLw-tqF767GSocB9RdiMZw2GQK8vUGl9zwdiAoT"/>
+<div>
+<p class="text-body-main font-bold text-text-primary-light">David Chen</p>
+<p class="text-small-meta text-text-muted-light">d.chen@mainland.net</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-main text-text-secondary-light">System Auditor</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-highest text-text-muted-light rounded-full w-fit">
+<span class="material-symbols-outlined text-[16px]">hourglass_empty</span>
+<span class="text-small-meta font-bold">In Progress</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-warning-500">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span class="text-small-meta font-bold">Profile Incomplete</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-body-main text-text-secondary-light font-data-mono">2023-10-23 11:20</p>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors group-hover:text-primary">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-low flex items-center justify-between border-t border-border-default-light">
+<p class="text-small-meta text-text-muted-light font-body-main">Showing 1 to 4 of 24,512 entries</p>
+<div class="flex gap-2">
+<button class="p-2 bg-white border border-border-default-light rounded-lg text-text-muted-light hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-lg font-bold shadow-sm">1</button>
+<button class="w-10 h-10 bg-white border border-border-default-light text-text-secondary-light rounded-lg font-bold hover:bg-surface-container transition-colors">2</button>
+<button class="w-10 h-10 bg-white border border-border-default-light text-text-secondary-light rounded-lg font-bold hover:bg-surface-container transition-colors">3</button>
+<span class="w-10 h-10 flex items-center justify-center text-text-muted-light">...</span>
+<button class="w-10 h-10 bg-white border border-border-default-light text-text-secondary-light rounded-lg font-bold hover:bg-surface-container transition-colors">1,225</button>
+<button class="p-2 bg-white border border-border-default-light rounded-lg text-text-secondary-light hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="mt-8 flex justify-between items-center text-small-meta text-text-muted-light">
+<p>© 2023 Thikana Admin. All actions are logged for security and audit compliance.</p>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">System Status</a>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB - Only on Home/Dash, suppressed here as per logic but shown for demo if required by UI pattern -->
+<!-- Suppressed on "User Management" detail/sub-page -->
+</body></html>

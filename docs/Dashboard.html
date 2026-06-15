@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thikana Admin Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#ecedf8",
+                      "error-container": "#ffdad6",
+                      "text-muted-dark": "#93A6C5",
+                      "info-500": "#0EA5E9",
+                      "bg-muted-light": "#F2F4F8",
+                      "secondary": "#505f76",
+                      "border-default-light": "#D9E0EA",
+                      "border-default-dark": "#2B3A56",
+                      "text-secondary-dark": "#C3D0E4",
+                      "on-primary-container": "#fffdff",
+                      "on-error": "#ffffff",
+                      "secondary-container": "#d0e1fb",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#0b1c30",
+                      "secondary-fixed": "#d3e4fe",
+                      "surface-dim": "#d8d9e4",
+                      "text-primary-dark": "#E6EDF8",
+                      "on-tertiary-fixed-variant": "#7b2f00",
+                      "inverse-surface": "#2d3038",
+                      "primary-fixed": "#d7e2ff",
+                      "primary-container": "#0b72e7",
+                      "bg-app-light": "#F6F7FB",
+                      "text-muted-light": "#64748B",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "outline": "#727785",
+                      "tertiary-fixed-dim": "#ffb694",
+                      "on-surface": "#181c23",
+                      "danger-500": "#D92D20",
+                      "on-tertiary": "#ffffff",
+                      "text-secondary-light": "#334155",
+                      "on-background": "#181c23",
+                      "surface": "#f9f9ff",
+                      "on-tertiary-container": "#fffdff",
+                      "bg-panel-light": "#FFFFFF",
+                      "surface-bright": "#f9f9ff",
+                      "tertiary-container": "#c55102",
+                      "bg-panel-dark": "#121A2B",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#351000",
+                      "primary": "#005abb",
+                      "surface-tint": "#005bbe",
+                      "on-primary-fixed-variant": "#004491",
+                      "text-primary-light": "#0F172A",
+                      "on-primary-fixed": "#001a40",
+                      "border-strong-light": "#B8C3D6",
+                      "surface-container-high": "#e6e8f2",
+                      "inverse-on-surface": "#eff0fa",
+                      "on-surface-variant": "#414754",
+                      "bg-app-dark": "#0B1220",
+                      "primary-fixed-dim": "#acc7ff",
+                      "tertiary-fixed": "#ffdbcc",
+                      "tertiary": "#9e3f00",
+                      "surface-container-lowest": "#ffffff",
+                      "bg-muted-dark": "#1D2940",
+                      "surface-variant": "#e0e2ec",
+                      "border-strong-dark": "#3A4B6B",
+                      "success-500": "#1F9D55",
+                      "on-secondary-container": "#54647a",
+                      "surface-container-highest": "#e0e2ec",
+                      "outline-variant": "#c1c6d6",
+                      "inverse-primary": "#acc7ff",
+                      "warning-500": "#D97706",
+                      "background": "#f9f9ff",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f2f3fd",
+                      "secondary-fixed-dim": "#b7c8e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gap-sm": "8px",
+                      "base": "8px",
+                      "gap-xs": "4px",
+                      "gap-md": "16px",
+                      "gap-lg": "24px",
+                      "page-padding-lg": "24px",
+                      "page-padding-sm": "16px",
+                      "page-padding-md": "20px"
+              },
+              "fontFamily": {
+                      "data-mono": ["JetBrains Mono"],
+                      "section-title": ["Plus Jakarta Sans"],
+                      "body-main": ["Plus Jakarta Sans"],
+                      "small-meta": ["Plus Jakarta Sans"],
+                      "page-title": ["Plus Jakarta Sans"],
+                      "card-title": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "data-mono": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "section-title": ["22px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "body-main": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "small-meta": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "page-title": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "card-title": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F6F7FB;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D9E0EA;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-bg-app-light text-text-primary-light">
+<!-- SideNavBar -->
+<aside class="docked left-0 h-full w-64 fixed z-50 bg-bg-panel-light flex flex-col py-page-padding-lg border-r border-border-default-light shadow-sm">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-xl flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">domain</span>
+</div>
+<div>
+<h1 class="font-section-title text-section-title text-primary leading-tight">Thikana</h1>
+<p class="text-xs text-text-muted-light font-medium tracking-wide">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<!-- Active Tab: Dashboard -->
+<a class="bg-secondary-container text-on-secondary-container rounded-lg font-bold flex items-center gap-3 px-4 py-3 transition-colors duration-120" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-main text-body-main">Dashboard</span>
+</a>
+<a class="text-text-secondary-light hover:bg-surface-container transition-colors duration-120 rounded-lg flex items-center gap-3 px-4 py-3" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-main text-body-main">User Management</span>
+</a>
+<a class="text-text-secondary-light hover:bg-surface-container transition-colors duration-120 rounded-lg flex items-center gap-3 px-4 py-3" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="font-body-main text-body-main">KYC Verification</span>
+</a>
+<a class="text-text-secondary-light hover:bg-surface-container transition-colors duration-120 rounded-lg flex items-center gap-3 px-4 py-3" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-main text-body-main">Product Moderation</span>
+</a>
+<a class="text-text-secondary-light hover:bg-surface-container transition-colors duration-120 rounded-lg flex items-center gap-3 px-4 py-3" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-main text-body-main">Audit Logs</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-md hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="font-body-main text-body-main">New Report</span>
+</button>
+<div class="pt-4 border-t border-border-default-light">
+<a class="text-text-secondary-light hover:bg-surface-container transition-colors duration-120 rounded-lg flex items-center gap-3 px-4 py-3" href="#">
+<span class="material-symbols-outlined">headset_mic</span>
+<span class="font-body-main text-body-main">Support</span>
+</a>
+<a class="text-text-secondary-light hover:bg-surface-container transition-colors duration-120 rounded-lg flex items-center gap-3 px-4 py-3" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-main text-body-main">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-40 bg-bg-panel-light shadow-sm w-full">
+<div class="flex justify-between items-center h-16 px-page-padding-lg w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center text-text-muted-light">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 w-80 text-body-main focus:ring-2 focus:ring-primary transition-all" placeholder="Search data, users, or logs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-text-muted-light hover:bg-surface-container-low rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-bg-panel-light"></span>
+</button>
+<button class="p-2 text-text-muted-light hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 text-text-muted-light hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-border-default-light mx-2"></div>
+<div class="flex items-center gap-3 ml-2">
+<div class="text-right hidden sm:block">
+<p class="text-body-main font-bold text-text-primary-light">Alex Carter</p>
+<p class="text-xs text-text-muted-light">Super Admin</p>
+</div>
+<img alt="Administrator Avatar" class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover" data-alt="A professional headshot of a middle-aged man with short groomed hair wearing a crisp white button-down shirt. The background is a soft, out-of-focus modern office environment with neutral tones and clean lines. The lighting is bright and even, characteristic of a high-end corporate portrait with a welcoming but authoritative feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnk94LspnplcVCxKhvkaD2vN47v0zEVYZzdhPqulioCavmL3PDHxu9qYSte-wZJD1rgjGPSAfhgzlZpq9anJAbgu-_QdO6vuEqL9UJy99qWEBiUipLSpQHJp4qvRlv5S8iYIq-5U_M9ZydKspxY0sgd0aGnyLksQFwuRfHsSJCR_ZCQK10H3LZVhdtYsn7gou7xz-ZyUlcGf-T36aUsozCDypGZLfaDqMZTSjt0lm_6wf-oBc6oFTIcpTnGsZegN61WlHy-46rpsm5"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Body -->
+<div class="p-page-padding-lg max-w-[1440px] mx-auto w-full flex gap-gap-lg">
+<!-- Main Content Area -->
+<div class="flex-1 space-y-gap-lg">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-page-title text-page-title text-text-primary-light">System Overview</h2>
+<p class="text-text-muted-light mt-1">Real-time performance and user metrics for Thikana platform.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-bg-panel-light border border-border-default-light rounded-lg text-body-main font-semibold hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                            Last 24 Hours
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-bg-panel-light border border-border-default-light rounded-lg text-body-main font-semibold hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<!-- KPI Cards Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gap-md">
+<!-- Total Users -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">group</span>
+</div>
+<span class="text-success-500 font-bold text-xs flex items-center bg-success-500/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +12%
+                            </span>
+</div>
+<div class="mt-4">
+<p class="text-text-muted-light font-medium text-sm">Total Users</p>
+<h3 class="text-2xl font-extrabold text-text-primary-light mt-1">42,892</h3>
+</div>
+</div>
+<!-- Active Listings -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-info-500/10 text-info-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">home_work</span>
+</div>
+<span class="text-success-500 font-bold text-xs flex items-center bg-success-500/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +4.5%
+                            </span>
+</div>
+<div class="mt-4">
+<p class="text-text-muted-light font-medium text-sm">Active Listings</p>
+<h3 class="text-2xl font-extrabold text-text-primary-light mt-1">12,401</h3>
+</div>
+</div>
+<!-- Pending KYC -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-warning-500/10 text-warning-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">verified_user</span>
+</div>
+<span class="text-danger-500 font-bold text-xs flex items-center bg-danger-500/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1">priority_high</span>
+                                Critical
+                            </span>
+</div>
+<div class="mt-4">
+<p class="text-text-muted-light font-medium text-sm">Pending KYC</p>
+<h3 class="text-2xl font-extrabold text-text-primary-light mt-1">842</h3>
+</div>
+</div>
+<!-- Orders Today -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-tertiary-container/10 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">shopping_bag</span>
+</div>
+<span class="text-success-500 font-bold text-xs flex items-center bg-success-500/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +24%
+                            </span>
+</div>
+<div class="mt-4">
+<p class="text-text-muted-light font-medium text-sm">Orders Today</p>
+<h3 class="text-2xl font-extrabold text-text-primary-light mt-1">1,248</h3>
+</div>
+</div>
+</div>
+<!-- Main Data Visualization Row -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-gap-lg">
+<!-- Trend Chart (Spans 2 columns) -->
+<div class="xl:col-span-2 bg-bg-panel-light rounded-xl shadow-sm border border-border-default-light p-6">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="font-card-title text-card-title text-text-primary-light">Order Volume Trend</h4>
+<p class="text-small-meta text-text-muted-light">7-day rolling performance of completed transactions</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-xs font-medium text-text-muted-light">Current Period</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-border-default-light"></span>
+<span class="text-xs font-medium text-text-muted-light">Previous Period</span>
+</div>
+</div>
+</div>
+<!-- Visual representation of a chart -->
+<div class="h-[280px] w-full relative mt-4 flex items-end justify-between px-2">
+<!-- Background Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-dashed border-border-default-light w-full"></div>
+<div class="border-t border-dashed border-border-default-light w-full"></div>
+<div class="border-t border-dashed border-border-default-light w-full"></div>
+<div class="border-t border-dashed border-border-default-light w-full"></div>
+<div class="border-t border-dashed border-border-default-light w-full"></div>
+</div>
+<!-- Fake Bars/Chart Data -->
+<div class="flex-1 flex items-end justify-around h-full pt-10 z-10">
+<div class="w-8 bg-primary rounded-t-sm" style="height: 60%"></div>
+<div class="w-8 bg-primary rounded-t-sm" style="height: 75%"></div>
+<div class="w-8 bg-primary rounded-t-sm" style="height: 45%"></div>
+<div class="w-8 bg-primary rounded-t-sm" style="height: 90%"></div>
+<div class="w-8 bg-primary rounded-t-sm" style="height: 65%"></div>
+<div class="w-8 bg-primary rounded-t-sm" style="height: 80%"></div>
+<div class="w-8 bg-primary rounded-t-sm" style="height: 55%"></div>
+<div class="w-8 bg-primary rounded-t-sm" style="height: 85%"></div>
+</div>
+</div>
+<div class="flex justify-around mt-4 text-xs font-bold text-text-muted-light uppercase tracking-tighter">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span><span>Today</span>
+</div>
+</div>
+<!-- Distribution Card -->
+<div class="bg-bg-panel-light rounded-xl shadow-sm border border-border-default-light p-6">
+<h4 class="font-card-title text-card-title text-text-primary-light mb-6">User Distribution</h4>
+<div class="space-y-6">
+<div class="flex items-center justify-center h-48">
+<!-- Ring Chart Mock -->
+<div class="relative w-40 h-40 rounded-full border-[16px] border-primary-fixed flex items-center justify-center">
+<div class="absolute inset-[-16px] w-40 h-40 rounded-full border-[16px] border-primary border-t-transparent border-l-transparent rotate-45"></div>
+<div class="text-center">
+<p class="text-2xl font-extrabold">82%</p>
+<p class="text-[10px] text-text-muted-light uppercase font-bold tracking-widest">Growth</p>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-sm font-medium">New Registrations</span>
+</div>
+<span class="text-sm font-bold">14,203</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-info-500"></div>
+<span class="text-sm font-medium">Returning Users</span>
+</div>
+<span class="text-sm font-bold">28,689</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></div>
+<span class="text-sm font-medium">Guest Checkout</span>
+</div>
+<span class="text-sm font-bold">5,411</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Moderation Requests -->
+<div class="bg-bg-panel-light rounded-xl shadow-sm border border-border-default-light overflow-hidden">
+<div class="p-6 border-b border-border-default-light flex justify-between items-center">
+<h4 class="font-card-title text-card-title text-text-primary-light">Recent Verification Tasks</h4>
+<button class="text-primary text-sm font-bold hover:underline">View All Task Queue</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-text-muted-light text-xs font-bold uppercase tracking-wider">
+<tr>
+<th class="px-6 py-3">Applicant</th>
+<th class="px-6 py-3">Type</th>
+<th class="px-6 py-3">Submission Date</th>
+<th class="px-6 py-3">Status</th>
+<th class="px-6 py-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-default-light">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-bg-muted-light flex items-center justify-center font-bold text-primary">JD</div>
+<div>
+<p class="text-sm font-bold">John Doe Enterprises</p>
+<p class="text-xs text-text-muted-light">ID: #49281</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Merchant KYC</td>
+<td class="px-6 py-4 text-sm">Oct 24, 2023 | 14:20</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full bg-warning-500/10 text-warning-500 text-[10px] font-bold uppercase">In Review</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-bg-muted-light flex items-center justify-center font-bold text-primary">SA</div>
+<div>
+<p class="text-sm font-bold">Sarah Alisson</p>
+<p class="text-xs text-text-muted-light">ID: #49275</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Landowner Proof</td>
+<td class="px-6 py-4 text-sm">Oct 24, 2023 | 11:05</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full bg-success-500/10 text-success-500 text-[10px] font-bold uppercase">Verified</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-bg-muted-light flex items-center justify-center font-bold text-primary">RK</div>
+<div>
+<p class="text-sm font-bold">Robert K. Properties</p>
+<p class="text-xs text-text-muted-light">ID: #49260</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Corporate Audit</td>
+<td class="px-6 py-4 text-sm">Oct 23, 2023 | 18:45</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full bg-danger-500/10 text-danger-500 text-[10px] font-bold uppercase">Rejected</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Side Alert Rail (Anomaly Rail) -->
+<aside class="w-80 space-y-gap-lg">
+<!-- Anomaly Alerts -->
+<div class="bg-bg-panel-light rounded-xl shadow-sm border border-border-default-light flex flex-col h-full">
+<div class="p-5 border-b border-border-default-light">
+<div class="flex items-center gap-2 text-danger-500 mb-1">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<h5 class="font-bold text-sm">Anomaly Alerts</h5>
+</div>
+<p class="text-xs text-text-muted-light">Real-time system health &amp; security</p>
+</div>
+<div class="p-2 overflow-y-auto max-h-[calc(100vh-200px)] custom-scrollbar">
+<!-- Alert Item -->
+<div class="p-4 mb-2 rounded-lg bg-error-container/20 border border-error-container hover:bg-error-container/30 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-error px-2 py-0.5 bg-error/10 rounded">Security</span>
+<span class="text-[10px] text-text-muted-light">2 min ago</span>
+</div>
+<p class="text-sm font-bold text-on-error-container">Suspicious Login Burst</p>
+<p class="text-xs text-text-secondary-light mt-1">12 failed attempts from IP 192.168.1.45 in 10 seconds.</p>
+<div class="mt-3 flex gap-2">
+<button class="px-3 py-1 bg-error text-on-error text-[10px] font-bold rounded uppercase">Block IP</button>
+<button class="px-3 py-1 bg-surface-container text-on-surface text-[10px] font-bold rounded uppercase">Ignore</button>
+</div>
+</div>
+<!-- Alert Item -->
+<div class="p-4 mb-2 rounded-lg bg-warning-500/10 border border-warning-500/20 hover:bg-warning-500/20 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-warning-500 px-2 py-0.5 bg-warning-500/10 rounded">Performance</span>
+<span class="text-[10px] text-text-muted-light">15 min ago</span>
+</div>
+<p class="text-sm font-bold text-warning-500">API Latency Spike</p>
+<p class="text-xs text-text-secondary-light mt-1">v1/orders endpoint responding in &gt; 2.5s.</p>
+</div>
+<!-- Alert Item -->
+<div class="p-4 mb-2 rounded-lg bg-info-500/10 border border-info-500/20 hover:bg-info-500/20 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-info-500 px-2 py-0.5 bg-info-500/10 rounded">System</span>
+<span class="text-[10px] text-text-muted-light">45 min ago</span>
+</div>
+<p class="text-sm font-bold text-info-500">Database Auto-Scale</p>
+<p class="text-xs text-text-secondary-light mt-1">Cloud instances scaled to +2 to handle peak traffic.</p>
+</div>
+<!-- Alert Item -->
+<div class="p-4 mb-2 rounded-lg border border-border-default-light hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-text-muted-light px-2 py-0.5 bg-surface-container rounded">Update</span>
+<span class="text-[10px] text-text-muted-light">2 hrs ago</span>
+</div>
+<p class="text-sm font-bold text-text-primary-light">Routine Cleanup Complete</p>
+<p class="text-xs text-text-secondary-light mt-1">Archived 12,000 logs older than 90 days.</p>
+</div>
+</div>
+<div class="mt-auto p-4 border-t border-border-default-light bg-surface-container-lowest">
+<button class="w-full text-xs font-bold text-primary flex items-center justify-center gap-2 py-2 hover:bg-primary/5 rounded">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                            View Archive
+                        </button>
+</div>
+</div>
+<!-- Admin Team Active -->
+<div class="bg-bg-panel-light rounded-xl shadow-sm border border-border-default-light p-5">
+<h5 class="font-bold text-sm mb-4">Team Online</h5>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Team Member" class="w-8 h-8 rounded-full" data-alt="A close-up professional headshot of a young man with a slight beard, wearing a casual navy blue t-shirt. The lighting is soft and natural, coming from the side. He is set against a blurred gray architectural background, giving a professional and tech-savvy impression consistent with a modern workspace environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBByPL7R8c0BpH63fgYB-VwQA8Qwmr9eKbCPBReEfqEZ0nWQKdnQfE4OFDpD8lHyUq5HyNx5-_ARMjs_C61X64h-5J-WP1Gk3XGVSBhke8NaH90g5r6vvnEV681En8jQaHh4yuOUXkMK3mNUJ4zD_AJZvXjTjTwKlpjCgsczOfY0NNiM3bx_8-m3em8l5Zz45-YLfZJ92WPjiUyVzxYJZrZcN_MAXD_9MY-9-qudEaaWslqKeQP4HOumZ7RttakuKQd1j_GiLDNlRM-"/>
+<span class="absolute bottom-0 right-0 w-2 h-2 bg-success-500 border border-white rounded-full"></span>
+</div>
+<p class="text-xs font-bold">Marcus Chen</p>
+</div>
+<span class="text-[10px] text-text-muted-light">Mod</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Team Member" class="w-8 h-8 rounded-full" data-alt="A portrait of a smiling woman with long dark hair, wearing an elegant business casual blouse in a neutral tone. The setting is a brightly lit, contemporary indoor space with soft, airy qualities. The image captures a sense of approachability and expertise, fitting for a professional corporate admin dashboard environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfTgFpZWHx8eKRj5l3g1D7eueygdEEFjR6biBg-uMMCJpAUfKaBuGUx9152Cdu52bWdVxDWFJ6LoxRVpd2qfiVVrynByDsDq4Wg-8THnNDczI4nWVARQefZ8OM4lC16rYplW-2MjQXVP_iNjCnx94MqS22-Nx6dozTHfZQ9IQp88mzBgzhoTrzKuaoeqv8wBZ5OhWrnX7CZDgzYD4e-_BD9fil1_JJQ4lo-gmOocFcMTHj0Y7Gp-yF3D-BBmGiSg5I7yqEuf0dj3i3"/>
+<span class="absolute bottom-0 right-0 w-2 h-2 bg-success-500 border border-white rounded-full"></span>
+</div>
+<p class="text-xs font-bold">Elena Rodriguez</p>
+</div>
+<span class="text-[10px] text-text-muted-light">KYC</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Team Member" class="w-8 h-8 rounded-full" data-alt="A high-quality studio portrait of a man with glasses and a friendly expression, wearing a minimalist black polo shirt. The background is a solid muted blue-gray, providing a clean and focused look. The lighting is crisp and professional, highlighting a reliable and technical personality suited for an IT or admin role." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8A51yzhfvNECdeKLGxHB8B6fGLUkDBdeg5lHWpTdzDa8cldo5WTzUv2TchPRjq-_tggVk5knDIKzGyVPYreIM92JCiiTKidVI9eyZmKOf8zncNkEdJlruIlali436WsikG-VFaYX0EywFjJauQ3OxZKecp5xN4MT6QlOJ67cxVgxoKcZMutfVGkvFs624do9LvfjQAKovAhQfOU9V-jBVBMEBTPQYbvkyS8bZkVEc20cOdsN0lP3Ow2OtdD8AYHeDSv49SHvkI6Ny"/>
+<span class="absolute bottom-0 right-0 w-2 h-2 bg-surface-variant border border-white rounded-full"></span>
+</div>
+<p class="text-xs font-bold">Kevin Smith</p>
+</div>
+<span class="text-[10px] text-text-muted-light">Offline</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</body></html>
