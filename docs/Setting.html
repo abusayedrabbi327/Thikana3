@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Settings | Thikana Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0b72e7",
+                        "on-background": "#181c23",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "text-secondary-dark": "#C3D0E4",
+                        "outline": "#727785",
+                        "tertiary-fixed": "#ffdbcc",
+                        "text-muted-light": "#64748B",
+                        "primary-fixed-dim": "#acc7ff",
+                        "bg-app-light": "#F6F7FB",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f2f3fd",
+                        "secondary-container": "#d0e1fb",
+                        "secondary": "#505f76",
+                        "primary": "#005abb",
+                        "border-default-light": "#D9E0EA",
+                        "surface-variant": "#e0e2ec",
+                        "on-primary-fixed": "#001a40",
+                        "bg-muted-dark": "#1D2940",
+                        "on-secondary-container": "#54647a",
+                        "success-500": "#1F9D55",
+                        "on-tertiary-container": "#fffdff",
+                        "tertiary-fixed-dim": "#ffb694",
+                        "secondary-fixed": "#d3e4fe",
+                        "bg-panel-dark": "#121A2B",
+                        "info-500": "#0EA5E9",
+                        "inverse-surface": "#2d3038",
+                        "surface-container-high": "#e6e8f2",
+                        "on-tertiary": "#ffffff",
+                        "text-secondary-light": "#334155",
+                        "on-primary-fixed-variant": "#004491",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#181c23",
+                        "on-secondary": "#ffffff",
+                        "text-muted-dark": "#93A6C5",
+                        "surface-container": "#ecedf8",
+                        "on-surface-variant": "#414754",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "bg-muted-light": "#F2F4F8",
+                        "border-strong-light": "#B8C3D6",
+                        "text-primary-light": "#0F172A",
+                        "tertiary-container": "#c55102",
+                        "background": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c6d6",
+                        "border-strong-dark": "#3A4B6B",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#fffdff",
+                        "warning-500": "#D97706",
+                        "bg-app-dark": "#0B1220",
+                        "surface": "#f9f9ff",
+                        "inverse-primary": "#acc7ff",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "border-default-dark": "#2B3A56",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff0fa",
+                        "tertiary": "#9e3f00",
+                        "surface-dim": "#d8d9e4",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-tint": "#005bbe",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-container-highest": "#e0e2ec",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-tertiary-fixed": "#351000",
+                        "text-primary-dark": "#E6EDF8",
+                        "bg-panel-light": "#FFFFFF",
+                        "danger-500": "#D92D20"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gap-md": "16px",
+                        "page-padding-sm": "16px",
+                        "gap-sm": "8px",
+                        "gap-xs": "4px",
+                        "page-padding-lg": "24px",
+                        "gap-lg": "24px",
+                        "base": "8px",
+                        "page-padding-md": "20px"
+                    },
+                    "fontFamily": {
+                        "small-meta": ["Plus Jakarta Sans"],
+                        "page-title": ["Plus Jakarta Sans"],
+                        "data-mono": ["JetBrains Mono"],
+                        "section-title": ["Plus Jakarta Sans"],
+                        "card-title": ["Plus Jakarta Sans"],
+                        "body-main": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "small-meta": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "page-title": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "data-mono": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "section-title": ["22px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "card-title": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-main": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body class="bg-bg-app-light text-on-background font-body-main">
+<!-- SideNavBar Anchor -->
+<aside class="docked left-0 h-full w-64 fixed z-50 bg-bg-panel-light shadow-sm flex flex-col py-page-padding-lg border-r border-border-default-light">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">domain</span>
+</div>
+<div>
+<h1 class="font-section-title text-section-title text-primary leading-none">Thikana</h1>
+<p class="text-small-meta text-text-muted-light">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light hover:bg-surface-container rounded-lg transition-colors duration-120 group active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-main">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light hover:bg-surface-container rounded-lg transition-colors duration-120 group active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-main">User Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light hover:bg-surface-container rounded-lg transition-colors duration-120 group active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="font-body-main">KYC Verification</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light hover:bg-surface-container rounded-lg transition-colors duration-120 group active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-main">Product Moderation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light hover:bg-surface-container rounded-lg transition-colors duration-120 group active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-body-main">Audit Logs</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-1 border-t border-border-default-light pt-4">
+<button class="w-full flex items-center gap-3 px-3 py-2 bg-primary text-white rounded-lg font-bold shadow-sm hover:opacity-90 transition-opacity active:scale-95 mb-4">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>New Report</span>
+</button>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light hover:bg-surface-container rounded-lg transition-colors duration-120" href="#">
+<span class="material-symbols-outlined" data-icon="headset_mic">headset_mic</span>
+<span class="font-body-main">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light hover:bg-surface-container rounded-lg transition-colors duration-120" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-main">Sign Out</span>
+</a>
+</div>
+</aside>
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Anchor -->
+<header class="docked full-width top-0 sticky z-40 bg-bg-panel-light shadow-sm w-full">
+<div class="flex justify-between items-center h-16 px-page-padding-lg w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted-light">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-body-main focus:ring-2 focus:ring-primary outline-none" placeholder="Search configurations..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-6">
+<a class="text-text-muted-light font-body-main hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="text-primary font-bold border-b-2 border-primary py-5" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-3 border-l border-border-default-light pl-6">
+<button class="p-2 text-text-muted-light hover:bg-surface-container-low rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-text-muted-light hover:bg-surface-container-low rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="flex items-center gap-3 ml-2 cursor-pointer group">
+<img alt="Administrator Avatar" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container group-hover:ring-primary transition-all" data-alt="A professional portrait of a senior system administrator in a high-tech corporate office. The man is wearing a crisp white shirt and has a confident, friendly expression. The background shows a blurred, modern office environment with soft blue and white lighting, maintaining a clean and institutional aesthetic that reflects reliability and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT4_2XA0wCiiY4soUIeGOWfJ5x55zQ98Hw4_q1KBfsUSQifFFCZ344LB-fPRd6o8Z613_kbJYIuMnRtf1S7_06oIRVAx7x0d7suvo4rAxSQaYBAMc03Ndj3N-JexqZ2q_Z_nDB1hlaRFu9N02TowBpNoOocPOuTXGerulvsYfqsahwggSYPFTn48YnHSFeyDnX3llmlbgOO0hn4xD1JaUMJpzhk6bc_K_hJ97disj4M4eqkXfOa-pQB5qYWm65uhYnKmMRQsfAO3o6"/>
+<div class="hidden lg:block">
+<p class="text-body-main font-bold leading-none">Admin User</p>
+<p class="text-small-meta text-text-muted-light">Super Admin</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-page-padding-lg max-w-[1440px] mx-auto">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-page-title text-page-title text-primary mb-1">System Settings</h2>
+<p class="text-body-main text-text-muted-light">Configure global platform behavior, security thresholds, and feature availability.</p>
+</div>
+<button class="px-6 py-2.5 bg-primary text-white rounded-lg font-bold shadow-md hover:bg-primary-container transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">save</span>
+                    Save Changes
+                </button>
+</div>
+<!-- Settings Grid Layout -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Navigation Tabs (Vertical for density) -->
+<div class="col-span-12 lg:col-span-3 space-y-2">
+<button class="w-full flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold text-left">
+<span class="material-symbols-outlined">settings</span>
+                        General Settings
+                    </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container-low rounded-lg font-medium text-left transition-colors">
+<span class="material-symbols-outlined">verified_user</span>
+                        KYC Configuration
+                    </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container-low rounded-lg font-medium text-left transition-colors">
+<span class="material-symbols-outlined">gavel</span>
+                        Moderation Rules
+                    </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container-low rounded-lg font-medium text-left transition-colors">
+<span class="material-symbols-outlined">flag</span>
+                        Feature Flags
+                    </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-surface-container-low rounded-lg font-medium text-left transition-colors">
+<span class="material-symbols-outlined">speed</span>
+                        Rate Limits
+                    </button>
+</div>
+<!-- Active Content Area (Bento-style Sections) -->
+<div class="col-span-12 lg:col-span-9 space-y-lg">
+<!-- Section 1: General & Maintenance -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light">
+<div class="flex items-center gap-3 mb-6">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">tune</span>
+</div>
+<h3 class="font-section-title text-section-title">General Platform Controls</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex items-start justify-between p-4 bg-surface-container-low rounded-lg">
+<div>
+<p class="font-card-title text-card-title mb-1">Maintenance Mode</p>
+<p class="text-small-meta text-text-muted-light">Direct all traffic to a "Under Maintenance" splash page.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between p-4 bg-surface-container-low rounded-lg">
+<div>
+<p class="font-card-title text-card-title mb-1">Global Registration</p>
+<p class="text-small-meta text-text-muted-light">Allow new users to sign up for accounts platform-wide.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<div class="mt-8">
+<label class="block font-card-title text-card-title mb-2">Platform Name</label>
+<input class="w-full max-w-lg px-4 py-2 border border-border-default-light rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all" type="text" value="Thikana E-Commerce Cluster"/>
+<p class="mt-1 text-small-meta text-text-muted-light">This name appears in automated emails and browser title bars.</p>
+</div>
+</div>
+<!-- Section 2: KYC & Compliance -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light">
+<div class="flex items-center gap-3 mb-6">
+<div class="p-2 bg-success-500/10 rounded-lg text-success-500">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<h3 class="font-section-title text-section-title">KYC Configuration</h3>
+</div>
+<div class="space-y-6">
+<div class="flex flex-col md:flex-row gap-lg">
+<div class="flex-1"><label class="block font-card-title text-card-title mb-3">Auto-Approval Confidence Thresholds</label>
+<div class="space-y-4">
+<div class="relative pt-2 px-1">
+<div class="h-2 w-full bg-surface-container rounded-full flex overflow-hidden">
+<div class="h-full bg-error" style="width: 50%"></div>
+<div class="h-full bg-warning-500" style="width: 35%"></div>
+<div class="h-full bg-success-500" style="width: 15%"></div>
+</div>
+<div class="absolute top-0 left-[85%] -translate-x-1/2 flex flex-col items-center">
+<div class="w-1 h-6 bg-primary rounded-full"></div>
+<span class="text-[10px] font-bold text-primary mt-1 bg-white px-1 shadow-sm border border-primary/20">85%</span>
+</div>
+<div class="absolute top-0 left-[50%] -translate-x-1/2 flex flex-col items-center">
+<div class="w-0.5 h-6 bg-outline opacity-50 rounded-full"></div>
+<span class="text-[10px] font-bold text-text-muted-light mt-1">50%</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-6">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-success-500"></div>
+<div>
+<p class="text-[11px] font-bold leading-none">Auto-Approve</p>
+<p class="text-[10px] text-text-muted-light">&gt; 85% confidence</p>
+</div>
+</div>
+<div class="flex items-center gap-2 border-x border-border-default-light px-2">
+<div class="w-3 h-3 rounded-full bg-warning-500"></div>
+<div>
+<p class="text-[11px] font-bold leading-none">Manual Review</p>
+<p class="text-[10px] text-text-muted-light">50% - 85% range</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div>
+<p class="text-[11px] font-bold leading-none">Auto-Reject</p>
+<p class="text-[10px] text-text-muted-light">&lt; 50% score</p>
+</div>
+</div>
+</div>
+</div></div>
+<div class="flex-1">
+<label class="block font-card-title text-card-title mb-2">Review Escalation</label>
+<select class="w-full px-4 py-2 border border-border-default-light rounded-lg focus:ring-2 focus:ring-primary outline-none">
+<option>Round Robin</option>
+<option>Senior Mod Only</option>
+<option>Team Lead Approval</option>
+</select>
+<p class="mt-1 text-small-meta text-text-muted-light">Determine how manual review tasks are distributed to agents.</p>
+</div>
+</div>
+<div class="pt-4 border-t border-border-default-light"><p class="font-card-title text-card-title mb-4">Required Documents per Region</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+<label class="flex items-center gap-3 px-4 py-3 bg-surface-container-low border border-primary/20 rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-main font-medium">Passport</span>
+</label>
+<label class="flex items-center gap-3 px-4 py-3 bg-surface-container-low border border-primary/20 rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-main font-medium">National ID</span>
+</label>
+<label class="flex items-center gap-3 px-4 py-3 bg-white border border-border-default-light rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-main font-medium text-text-secondary-light">Utility Bill</span>
+</label>
+<label class="flex items-center gap-3 px-4 py-3 bg-white border border-border-default-light rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-main font-medium text-text-secondary-light">Face Scan</span>
+</label>
+</div></div>
+</div>
+</div>
+<!-- Section 3: Feature Flags & Moderation (Bento Pair) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Moderation -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light">
+<h3 class="font-card-title text-card-title mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-warning-500">warning</span>
+                                Flagging Thresholds
+                            </h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<label class="text-small-meta font-bold">Inappropriate Content</label>
+<span class="text-small-meta text-primary font-bold">3 Reports</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container rounded-lg appearance-none cursor-pointer accent-warning-500" max="10" min="1" type="range" value="3"/>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<label class="text-small-meta font-bold">Spam Detection Sensitivity</label>
+<span class="text-small-meta text-primary font-bold">High</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container rounded-lg appearance-none cursor-pointer accent-warning-500" max="3" min="1" type="range" value="3"/>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<span class="text-body-main">Auto-hide flagged reviews</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Feature Flags -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-default-light">
+<h3 class="font-card-title text-card-title mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-info-500">science</span>
+                                Feature Toggles
+                            </h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-2 border-b border-border-default-light pb-3">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-success-500"></div>
+<span class="text-body-main font-medium">Dark Mode Beta</span>
+</div>
+<span class="text-small-meta px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded font-bold">100% Rollout</span>
+</div>
+<div class="flex items-center justify-between p-2 border-b border-border-default-light pb-3">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-warning-500"></div>
+<span class="text-body-main font-medium">Crypto Checkout</span>
+</div>
+<span class="text-small-meta px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded font-bold">Internal Only</span>
+</div>
+<div class="flex items-center justify-between p-2">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-body-main font-medium">AI Support Agent</span>
+</div>
+<span class="text-small-meta px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded font-bold">Disabled</span>
+</div>
+<button class="w-full mt-2 text-primary text-small-meta font-bold hover:underline">Manage All Experiments →</button>
+</div>
+</div>
+</div>
+<!-- Section 4: Rate Limits (Data Grid) -->
+<div class="bg-bg-panel-light p-6 rounded-xl shadow-sm border border-border-strong-light bg-opacity-50">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-section-title text-section-title flex items-center gap-2">
+<span class="material-symbols-outlined">api</span>
+                                API &amp; User Rate Limiting
+                            </h3>
+<button class="text-primary font-bold text-body-main flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                                Add Preset
+                            </button>
+</div>
+<div class="overflow-hidden border border-border-default-light rounded-lg">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-4 py-3 text-small-meta font-bold text-text-muted-light uppercase tracking-wider">Scope</th>
+<th class="px-4 py-3 text-small-meta font-bold text-text-muted-light uppercase tracking-wider">Method</th>
+<th class="px-4 py-3 text-small-meta font-bold text-text-muted-light uppercase tracking-wider">Threshold</th>
+<th class="px-4 py-3 text-small-meta font-bold text-text-muted-light uppercase tracking-wider">Window</th>
+<th class="px-4 py-3 text-small-meta font-bold text-text-muted-light uppercase tracking-wider">Status</th>
+<th class="px-4 py-3"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-default-light">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-3 font-data-mono">/api/v1/search</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-info-500/10 text-info-500 rounded text-xs font-bold uppercase">GET</span></td>
+<td class="px-4 py-3 text-body-main">100 reqs</td>
+<td class="px-4 py-3 text-body-main">60s</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-success-500 text-white rounded-full text-[10px] font-bold uppercase">Active</span></td>
+<td class="px-4 py-3 text-right"><span class="material-symbols-outlined text-text-muted-light cursor-pointer hover:text-primary">more_vert</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-3 font-data-mono">/auth/login</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary-container rounded text-xs font-bold uppercase">POST</span></td>
+<td class="px-4 py-3 text-body-main">5 reqs</td>
+<td class="px-4 py-3 text-body-main">300s</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-success-500 text-white rounded-full text-[10px] font-bold uppercase">Active</span></td>
+<td class="px-4 py-3 text-right"><span class="material-symbols-outlined text-text-muted-light cursor-pointer hover:text-primary">more_vert</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-3 font-data-mono">/api/v1/upload</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary-container rounded text-xs font-bold uppercase">POST</span></td>
+<td class="px-4 py-3 text-body-main">10 reqs</td>
+<td class="px-4 py-3 text-body-main">1h</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-warning-500 text-white rounded-full text-[10px] font-bold uppercase">Warning</span></td>
+<td class="px-4 py-3 text-right"><span class="material-symbols-outlined text-text-muted-light cursor-pointer hover:text-primary">more_vert</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer for Mobile Shell Balance (Simulated for consistency) -->
+<div class="fixed bottom-0 left-64 right-0 p-4 bg-bg-panel-light border-t border-border-default-light flex justify-end gap-md md:hidden">
+<button class="px-6 py-2 bg-primary text-white rounded-lg font-bold shadow-md">Save Changes</button>
+</div>
+</main>
+<!-- FAB Suppression Rule Applied (Not rendered on settings screen) -->
+</body></html>

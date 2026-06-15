@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thikana Admin - Product Moderation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ecedf8",
+                    "error-container": "#ffdad6",
+                    "text-muted-dark": "#93A6C5",
+                    "info-500": "#0EA5E9",
+                    "bg-muted-light": "#F2F4F8",
+                    "secondary": "#505f76",
+                    "border-default-light": "#D9E0EA",
+                    "border-default-dark": "#2B3A56",
+                    "text-secondary-dark": "#C3D0E4",
+                    "on-primary-container": "#fffdff",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d0e1fb",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary-fixed": "#d3e4fe",
+                    "surface-dim": "#d8d9e4",
+                    "text-primary-dark": "#E6EDF8",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "inverse-surface": "#2d3038",
+                    "primary-fixed": "#d7e2ff",
+                    "primary-container": "#0b72e7",
+                    "bg-app-light": "#F6F7FB",
+                    "text-muted-light": "#64748B",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "outline": "#727785",
+                    "tertiary-fixed-dim": "#ffb694",
+                    "on-surface": "#181c23",
+                    "danger-500": "#D92D20",
+                    "on-tertiary": "#ffffff",
+                    "text-secondary-light": "#334155",
+                    "on-background": "#181c23",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-container": "#fffdff",
+                    "bg-panel-light": "#FFFFFF",
+                    "surface-bright": "#f9f9ff",
+                    "tertiary-container": "#c55102",
+                    "bg-panel-dark": "#121A2B",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#351000",
+                    "primary": "#005abb",
+                    "surface-tint": "#005bbe",
+                    "on-primary-fixed-variant": "#004491",
+                    "text-primary-light": "#0F172A",
+                    "on-primary-fixed": "#001a40",
+                    "border-strong-light": "#B8C3D6",
+                    "surface-container-high": "#e6e8f2",
+                    "inverse-on-surface": "#eff0fa",
+                    "on-surface-variant": "#414754",
+                    "bg-app-dark": "#0B1220",
+                    "primary-fixed-dim": "#acc7ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "tertiary": "#9e3f00",
+                    "surface-container-lowest": "#ffffff",
+                    "bg-muted-dark": "#1D2940",
+                    "surface-variant": "#e0e2ec",
+                    "border-strong-dark": "#3A4B6B",
+                    "success-500": "#1F9D55",
+                    "on-secondary-container": "#54647a",
+                    "surface-container-highest": "#e0e2ec",
+                    "outline-variant": "#c1c6d6",
+                    "inverse-primary": "#acc7ff",
+                    "warning-500": "#D97706",
+                    "background": "#f9f9ff",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f2f3fd",
+                    "secondary-fixed-dim": "#b7c8e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gap-sm": "8px",
+                    "base": "8px",
+                    "gap-xs": "4px",
+                    "gap-md": "16px",
+                    "gap-lg": "24px",
+                    "page-padding-lg": "24px",
+                    "page-padding-sm": "16px",
+                    "page-padding-md": "20px"
+            },
+            "fontFamily": {
+                    "data-mono": ["JetBrains Mono"],
+                    "section-title": ["Plus Jakarta Sans"],
+                    "body-main": ["Plus Jakarta Sans"],
+                    "small-meta": ["Plus Jakarta Sans"],
+                    "page-title": ["Plus Jakarta Sans"],
+                    "card-title": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "data-mono": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "section-title": ["22px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-main": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "small-meta": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "page-title": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "card-title": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            background-color: #0B1220;
+        }
+    </style>
+</head>
+<body class="font-body-main text-body-main bg-bg-app-dark text-text-primary-dark antialiased">
+<!-- SideNavBar Anchor -->
+<aside class="docked left-0 h-full w-64 fixed z-50 bg-bg-panel-dark shadow-sm flex flex-col py-page-padding-lg border-r border-border-default-dark">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+</div>
+<div>
+<h2 class="font-section-title text-section-title text-primary-fixed-dim leading-none">Thikana</h2>
+<p class="text-xs text-text-muted-dark">Admin Console</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-dark hover:bg-bg-muted-dark transition-colors duration-120 rounded-lg active:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-dark hover:bg-bg-muted-dark transition-colors duration-120 rounded-lg active:translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>User Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-dark hover:bg-bg-muted-dark transition-colors duration-120 rounded-lg active:translate-x-1" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span>KYC Verification</span>
+</a>
+<a class="bg-secondary text-on-secondary flex items-center gap-3 px-3 py-2 transition-colors duration-120 rounded-lg font-bold active:translate-x-1" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Product Moderation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-dark hover:bg-bg-muted-dark transition-colors duration-120 rounded-lg active:translate-x-1" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>Audit Logs</span>
+</a>
+</nav>
+<div class="px-4 mt-auto pt-4 border-t border-border-default-dark space-y-1">
+<button class="w-full flex items-center gap-3 px-3 py-2 text-text-secondary-dark hover:bg-bg-muted-dark transition-colors duration-120 rounded-lg mb-4">
+<span class="material-symbols-outlined">add_circle</span>
+<span>New Report</span>
+</button>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-dark hover:bg-bg-muted-dark transition-colors duration-120 rounded-lg" href="#">
+<span class="material-symbols-outlined">headset_mic</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-dark hover:bg-bg-muted-dark transition-colors duration-120 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar Anchor -->
+<header class="docked full-width top-0 sticky z-40 bg-bg-panel-dark shadow-sm w-full">
+<div class="flex justify-between items-center h-16 px-page-padding-lg w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-gap-md">
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center text-text-muted-dark">
+<span class="material-symbols-outlined text-sm">search</span>
+</span>
+<input class="pl-10 pr-4 py-2 bg-bg-muted-dark border-none rounded-lg text-body-main focus:ring-2 focus:ring-primary w-64 text-text-primary-dark" placeholder="Search products..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-gap-md">
+<button class="p-2 text-text-muted-dark hover:bg-bg-muted-dark rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-text-muted-dark hover:bg-bg-muted-dark rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 text-text-muted-dark hover:bg-bg-muted-dark rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-border-default-dark mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-bold text-text-primary-dark">Admin User</p>
+<p class="text-[10px] text-text-muted-dark uppercase tracking-wider font-semibold">Super Admin</p>
+</div>
+<img alt="Administrator Avatar" class="w-10 h-10 rounded-full border border-border-default-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnfndTG11Q_0k4-HjyYBTkc2r1QwnS-t8gquwQkCWqAsLOLukBe7-YE7hssqaIEmW3eqpCDhhPPX5V5GI_ndZho4ya77VCDxTU140OrqK1QCqRQ206OK0QJsnG98nhopkXV-fMwz26nM_vz6EzFsSxkn17LmGz5jZMGHr5H8TM0Agd0PkzDcfezhuv9GdrpkAuUYgkU4vmcsar9RL4iG0ZN330-1_rlRGzjrl-9sNqif9kuA4eTrUoVAPrfrJbo728ojPVA44NUGDw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<section class="p-page-padding-lg max-w-[1440px] mx-auto w-full flex-1">
+<div class="flex flex-col gap-gap-lg">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-page-title text-page-title text-text-primary-dark">Product Moderation</h1>
+<p class="text-text-muted-dark mt-1">Review and manage pending product listings across the marketplace.</p>
+</div>
+<div class="flex gap-gap-md">
+<div class="bg-bg-panel-dark border border-border-default-dark rounded-lg flex p-1">
+<button class="px-4 py-1.5 bg-secondary text-on-secondary rounded-md text-xs font-bold">List View</button>
+<button class="px-4 py-1.5 text-text-muted-dark hover:text-text-primary-dark text-xs font-bold">Grid View</button>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-container rounded-lg font-bold hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span>Filters</span>
+</button>
+</div>
+</div>
+<!-- Stats Row (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gap-md">
+<div class="bg-bg-panel-dark border border-border-default-dark p-6 rounded-xl shadow-sm">
+<p class="text-text-muted-dark text-xs font-bold uppercase tracking-widest mb-2">Pending Review</p>
+<div class="flex items-end justify-between">
+<h3 class="text-3xl font-extrabold text-warning-500">142</h3>
+<span class="material-symbols-outlined text-warning-500 opacity-20 text-4xl">pending_actions</span>
+</div>
+</div>
+<div class="bg-bg-panel-dark border border-border-default-dark p-6 rounded-xl shadow-sm">
+<p class="text-text-muted-dark text-xs font-bold uppercase tracking-widest mb-2">Flagged Items</p>
+<div class="flex items-end justify-between">
+<h3 class="text-3xl font-extrabold text-error">28</h3>
+<span class="material-symbols-outlined text-error opacity-20 text-4xl">report</span>
+</div>
+</div>
+<div class="bg-bg-panel-dark border border-border-default-dark p-6 rounded-xl shadow-sm">
+<p class="text-text-muted-dark text-xs font-bold uppercase tracking-widest mb-2">Approved Today</p>
+<div class="flex items-end justify-between">
+<h3 class="text-3xl font-extrabold text-success-500">854</h3>
+<span class="material-symbols-outlined text-success-500 opacity-20 text-4xl">verified</span>
+</div>
+</div>
+<div class="bg-bg-panel-dark border border-border-default-dark p-6 rounded-xl shadow-sm">
+<p class="text-text-muted-dark text-xs font-bold uppercase tracking-widest mb-2">Moderator Performance</p>
+<div class="flex items-end justify-between">
+<h3 class="text-3xl font-extrabold text-primary-fixed-dim">98.2%</h3>
+<span class="material-symbols-outlined text-primary-fixed-dim opacity-20 text-4xl">speed</span>
+</div>
+</div>
+</div>
+<!-- Product Table Container -->
+<div class="bg-bg-panel-dark border border-border-default-dark rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-bg-muted-dark sticky top-0 z-10">
+<tr>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-wider text-text-muted-dark border-b border-border-default-dark">Product Detail</th>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-wider text-text-muted-dark border-b border-border-default-dark">Category</th>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-wider text-text-muted-dark border-b border-border-default-dark">Seller</th>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-wider text-text-muted-dark border-b border-border-default-dark">Price</th>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-wider text-text-muted-dark border-b border-border-default-dark">Status</th>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-wider text-text-muted-dark border-b border-border-default-dark text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-default-dark">
+<!-- Table Row 1 -->
+<tr class="hover:bg-bg-muted-dark/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-lg object-cover bg-bg-muted-dark" data-alt="A high-end professional studio photograph of minimalist over-ear noise-cancelling headphones resting on a dark slate surface. The lighting is dramatic and cinematic, with cool blue and deep charcoal tones dominating the scene. The product's metallic finishes glisten under a single sharp key light, emphasizing the premium build quality. The background is softly out of focus, creating a sleek and modern corporate dark-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtfRDFNBukoCQzR8uFMzZIBw8lLFdK0dmxIEmNq-YNmJC3HldRVao-w1w1wrsZrkOLfiLaP2vJ0EaUk0RPJ8sal2aGLWn1mb8LWgAmX4gEf6LxiXyzWrd3XZFqNbvz4tmHLf5j0JdGPN2ApZ59zRZgOPKDShrOwMKFDxgGfd5pZgJJdmFTKhO3UkD2HNHKq4n39-we7IaYo9Bs1SsgPd1R9xRLJ-boF0370Ma-jlJsP0brXGsO5NEJ9QroM7tZdVV05kfA-HyJMQHm"/>
+<div>
+<p class="font-bold text-text-primary-dark">Pro Audio X1 - Wireless</p>
+<p class="text-xs text-text-muted-dark font-data-mono">SKU: PA-882-991</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-text-secondary-dark">Electronics / Audio</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-text-primary-dark font-semibold">SoundStream Inc.</span>
+<span class="text-[10px] text-success-500 font-bold uppercase">Verified Seller</span>
+</div>
+</td>
+<td class="px-6 py-4 font-data-mono text-text-primary-dark">$299.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-warning-500/20 text-warning-500 border border-warning-500/30">
+<span class="w-1.5 h-1.5 rounded-full bg-warning-500"></span>
+                                            PENDING
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-success-500/10 text-success-500 hover:bg-success-500 hover:text-white rounded-lg transition-all" title="Approve">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+<button class="p-2 bg-error/10 text-error hover:bg-error hover:text-white rounded-lg transition-all" title="Reject">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<button class="p-2 bg-bg-muted-dark text-text-muted-dark hover:text-text-primary-dark rounded-lg transition-all">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="hover:bg-bg-muted-dark/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-lg object-cover bg-bg-muted-dark" data-alt="A macro architectural shot of a minimalist white ceramic wristwatch featuring a clean, mark-less face. The watch is positioned against a textured dark granite background, illuminated by soft side-lighting that casts gentle shadows. The palette is strictly monochrome, emphasizing clean lines and high-contrast professional design. The mood is sophisticated and elegant, perfectly aligned with a premium dark-themed administrative dashboard style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACKN0I6mbdirZB7UOfmXLiYIanEQQkct715iiU1_80mlc11S7mwO9BMf-B5_pHINRJD-itRi2Lhs4FXypoTkS3G1brXYRNrh-Y7160-knQpR72P780GzIertww3ni3tAwV6QkFQENpO1SSDnAKDhFvvGBd4JZteE_ifRS_P0hDJ3KiD4EEATAK65TtiYvyDac0tBGfrDGunwOwOSQshAU-PtH-WdCwpWGxkzU4mJJtrVK049j9rNfjks4JsAweccW04ngpPBk7tgrn"/>
+<div>
+<p class="font-bold text-text-primary-dark">Arctic Minimalist Watch</p>
+<p class="text-xs text-text-muted-dark font-data-mono">SKU: AW-002-MIN</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-text-secondary-dark">Accessories / Fashion</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-text-primary-dark font-semibold">Urban Styles</span>
+<span class="text-[10px] text-text-muted-dark font-bold uppercase">Standard Seller</span>
+</div>
+</td>
+<td class="px-6 py-4 font-data-mono text-text-primary-dark">$145.50</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-error/20 text-error border border-error/30">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                            FLAGGED
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-success-500/10 text-success-500 hover:bg-success-500 hover:text-white rounded-lg transition-all" title="Approve">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+<button class="p-2 bg-error/10 text-error hover:bg-error hover:text-white rounded-lg transition-all" title="Reject">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<button class="p-2 bg-bg-muted-dark text-text-muted-dark hover:text-text-primary-dark rounded-lg transition-all">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Table Row 3 -->
+<tr class="hover:bg-bg-muted-dark/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-lg object-cover bg-bg-muted-dark" data-alt="A vibrant, high-contrast studio shot of a classic red athletic sneaker suspended in mid-air against a deep black void. The shoe is illuminated by sharp neon accents and clean white rim lighting, highlighting its texture and aerodynamic form. The color palette features intense primary reds and crisp whites against a dark, moody background. The overall aesthetic is energetic, professional, and optimized for a high-density digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASkEwJfr9UPyx7Vl9HSPmjRaqBsxIvzIyS3ufk--pBlcrbWYw97rH1yzrqVrJAkRfLIV_xIN4BdpvT4zD9guRC1nG8REgs5QZl8oNCBVptNeM84KW5RXyyFntWv9biss01GDzRFeiAemd1Ahaf-j88pLqpVrMmD1EvH18He1SLTq7t6j3N1aSAPk3DwLtsrEmM6AygoFLwcezVzlpXvaaWoxIgqCd9-sGNPUiLKKAoB6gxs5Dgnd8WqWMfHfqc2X91QYXxnhLpLF_F"/>
+<div>
+<p class="font-bold text-text-primary-dark">Velocity Run X2</p>
+<p class="text-xs text-text-muted-dark font-data-mono">SKU: VR-229-SPD</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-text-secondary-dark">Apparel / Sports</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-text-primary-dark font-semibold">ActiveLife Gear</span>
+<span class="text-[10px] text-success-500 font-bold uppercase">Verified Seller</span>
+</div>
+</td>
+<td class="px-6 py-4 font-data-mono text-text-primary-dark">$89.99</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-warning-500/20 text-warning-500 border border-warning-500/30">
+<span class="w-1.5 h-1.5 rounded-full bg-warning-500"></span>
+                                            PENDING
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-success-500/10 text-success-500 hover:bg-success-500 hover:text-white rounded-lg transition-all" title="Approve">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+<button class="p-2 bg-error/10 text-error hover:bg-error hover:text-white rounded-lg transition-all" title="Reject">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<button class="p-2 bg-bg-muted-dark text-text-muted-dark hover:text-text-primary-dark rounded-lg transition-all">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Table Row 4 -->
+<tr class="hover:bg-bg-muted-dark/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-lg object-cover bg-bg-muted-dark" data-alt="A sleek, high-technology digital tablet resting on a dark walnut desk within a modern, low-lit office setting. The tablet's screen displays a vibrant, colorful abstract wallpaper that serves as the primary light source in the scene. Reflections of soft overhead track lighting are visible on the device's glass surface. The image captures a clean, professional aesthetic with deep shadows and sharp focus, characteristic of an elite enterprise tech environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu82H-dWEnS-BP4PEgERhvjmF0p9Whb4bCmD6m2R6P-w-_zzs9uEm4XM8fyeJSxsvtNi-n63IjlzqkngdXKFLcGx2l4dYCWfynkTRvTdVHGxSCoyR8cwvlxLBoHy6pM0zd_b593sOa5IzUHR68T8fcH4nlcfDUFqLwMJh8xJ7Nvgr2vWysb2MUPAiomEid0vJYBtV7k0vmx7rar1m96TQylU3LAiAwfXyrxe_XftQWv7UQj9Jhb919kviH3_TBnnIYqH403TO01FDI"/>
+<div>
+<p class="font-bold text-text-primary-dark">ZenTab 11 Pro</p>
+<p class="text-xs text-text-muted-dark font-data-mono">SKU: ZT-900-PRO</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-text-secondary-dark">Electronics / Tablets</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-text-primary-dark font-semibold">Nexus Digital</span>
+<span class="text-[10px] text-success-500 font-bold uppercase">Verified Seller</span>
+</div>
+</td>
+<td class="px-6 py-4 font-data-mono text-text-primary-dark">$749.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-warning-500/20 text-warning-500 border border-warning-500/30">
+<span class="w-1.5 h-1.5 rounded-full bg-warning-500"></span>
+                                            PENDING
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-success-500/10 text-success-500 hover:bg-success-500 hover:text-white rounded-lg transition-all" title="Approve">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+<button class="p-2 bg-error/10 text-error hover:bg-error hover:text-white rounded-lg transition-all" title="Reject">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<button class="p-2 bg-bg-muted-dark text-text-muted-dark hover:text-text-primary-dark rounded-lg transition-all">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-bg-muted-dark/30 border-t border-border-default-dark flex items-center justify-between">
+<p class="text-xs text-text-muted-dark">Showing <span class="text-text-primary-dark font-bold">1 - 10</span> of <span class="text-text-primary-dark font-bold">142</span> products</p>
+<div class="flex gap-2">
+<button class="p-2 border border-border-default-dark rounded-lg text-text-muted-dark hover:text-text-primary-dark hover:bg-bg-muted-dark disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded-lg text-xs font-bold">1</button>
+<button class="px-3 py-1 text-text-muted-dark hover:bg-bg-muted-dark rounded-lg text-xs font-bold">2</button>
+<button class="px-3 py-1 text-text-muted-dark hover:bg-bg-muted-dark rounded-lg text-xs font-bold">3</button>
+<button class="p-2 border border-border-default-dark rounded-lg text-text-muted-dark hover:text-text-primary-dark hover:bg-bg-muted-dark">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Audit Trace -->
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-4 text-xs text-text-muted-dark">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">update</span> Last sync: 2 mins ago</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">history</span> Active Sessions: 12 Moderators</span>
+</div>
+<button class="text-xs font-bold text-primary-fixed-dim hover:underline flex items-center gap-1">
+                        View Detailed Audit Log
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB - Suppression Rule: Hidden for Moderation Panel as it's a detail task focused screen -->
+</body></html>

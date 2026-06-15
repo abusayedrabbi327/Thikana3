@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "text-muted-light": "#64748B",
+                    "surface-container-high": "#e6e8f2",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "text-secondary-light": "#334155",
+                    "surface-container": "#ecedf8",
+                    "surface-bright": "#f9f9ff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#d3e4fe",
+                    "surface": "#f9f9ff",
+                    "secondary-container": "#d0e1fb",
+                    "border-strong-dark": "#3A4B6B",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e0e2ec",
+                    "surface-dim": "#d8d9e4",
+                    "on-background": "#181c23",
+                    "primary": "#005abb",
+                    "primary-container": "#0b72e7",
+                    "success-500": "#1F9D55",
+                    "outline": "#727785",
+                    "on-primary-fixed-variant": "#004491",
+                    "on-secondary": "#ffffff",
+                    "bg-panel-dark": "#121A2B",
+                    "tertiary-fixed": "#ffdbcc",
+                    "on-secondary-fixed": "#0b1c30",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "text-muted-dark": "#93A6C5",
+                    "on-error-container": "#93000a",
+                    "text-primary-dark": "#E6EDF8",
+                    "on-tertiary-fixed": "#351000",
+                    "bg-muted-dark": "#1D2940",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c1c6d6",
+                    "info-500": "#0EA5E9",
+                    "border-default-light": "#D9E0EA",
+                    "surface-container-low": "#f2f3fd",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eff0fa",
+                    "bg-panel-light": "#FFFFFF",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "border-strong-light": "#B8C3D6",
+                    "text-primary-light": "#0F172A",
+                    "bg-app-light": "#F6F7FB",
+                    "surface-tint": "#005bbe",
+                    "secondary": "#505f76",
+                    "on-tertiary-container": "#fffdff",
+                    "tertiary-container": "#c55102",
+                    "on-primary-container": "#fffdff",
+                    "background": "#f9f9ff",
+                    "on-primary-fixed": "#001a40",
+                    "primary-fixed-dim": "#acc7ff",
+                    "surface-variant": "#e0e2ec",
+                    "on-surface-variant": "#414754",
+                    "danger-500": "#D92D20",
+                    "bg-app-dark": "#0B1220",
+                    "text-secondary-dark": "#C3D0E4",
+                    "bg-muted-light": "#F2F4F8",
+                    "inverse-surface": "#2d3038",
+                    "on-secondary-container": "#54647a",
+                    "tertiary-fixed-dim": "#ffb694",
+                    "inverse-primary": "#acc7ff",
+                    "border-default-dark": "#2B3A56",
+                    "on-surface": "#181c23",
+                    "warning-500": "#D97706",
+                    "tertiary": "#9e3f00",
+                    "primary-fixed": "#d7e2ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "page-padding-sm": "16px",
+                    "page-padding-lg": "24px",
+                    "gap-md": "16px",
+                    "page-padding-md": "20px",
+                    "gap-sm": "8px",
+                    "base": "8px",
+                    "gap-xs": "4px",
+                    "gap-lg": "24px"
+            },
+            "fontFamily": {
+                    "small-meta": ["Plus Jakarta Sans"],
+                    "section-title": ["Plus Jakarta Sans"],
+                    "body-main": ["Plus Jakarta Sans"],
+                    "page-title": ["Plus Jakarta Sans"],
+                    "card-title": ["Plus Jakarta Sans"],
+                    "data-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "small-meta": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "section-title": ["22px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-main": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "page-title": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "card-title": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "data-mono": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-mesh-gradient {
+            background: radial-gradient(at 0% 0%, #f6f7fb 0, transparent 50%), 
+                        radial-gradient(at 50% 0%, #e6edf8 0, transparent 50%), 
+                        radial-gradient(at 100% 0%, #f9f9ff 0, transparent 50%);
+        }
+        .circular-progress {
+            background: conic-gradient(var(--tw-primary) 94%, #e0e2ec 0);
+        }
+    </style>
+</head>
+<body class="bg-bg-app-light font-body-main text-text-primary-light">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-page-padding-lg h-16 bg-bg-panel-light border-b border-border-default-light">
+<div class="flex items-center gap-lg">
+<span class="font-page-title text-page-title text-primary">Thikana Admin</span>
+<div class="hidden md:flex relative items-center">
+<span class="material-symbols-outlined absolute left-3 text-text-muted-light">search</span>
+<input class="pl-10 pr-4 py-2 bg-bg-muted-light border-none rounded-lg text-body-main focus:ring-2 focus:ring-primary w-64" placeholder="Search KYC records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 hover:bg-bg-muted-light transition-colors duration-120 rounded-full text-text-secondary-light">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-bg-muted-light transition-colors duration-120 rounded-full text-text-secondary-light">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="p-2 hover:bg-bg-muted-light transition-colors duration-120 rounded-full text-text-secondary-light">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-default-light ml-2">
+<img alt="Administrator Profile" data-alt="A professional headshot of a corporate administrator in a modern office setting. The lighting is soft and natural, emphasizing a bright and clean professional atmosphere with a blurred background of a high-tech control center. The visual style is crisp, high-definition, and follows a light-mode color palette of whites and soft grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSJfyarPsc9h2Il7kKG-jff1z9GPHQxnW8uXgbNKcqmq5qTG54xwWYR9Mr89LxEPCQiMKyDT1ge2n4gLXplXl8BBzCT-tS8jVlQs0evFx3xhz8xkEpXo6Pz3uxGzlhSwlnn9lQFnujwGUnfdYyJHowbRt8SD_1TFkF_EMiX8Zh6qekmbBPFvCLZhyILc8Z5e8VYUht19CWdBv5FTwEtFyDxxIcxozB-1hNTHY_pCPgfdhOFtf17IU-5ImyGdvoA0ADjS5LlorwAjnG"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col p-gap-md z-40 bg-bg-panel-light border-r border-border-default-light pt-20">
+<div class="px-4 py-2 mb-6">
+<h2 class="font-card-title text-card-title font-bold text-primary">Verification</h2>
+<p class="text-small-meta text-text-muted-light uppercase tracking-wider">Admin Console</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-bg-muted-light rounded-lg transition-all duration-120 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-main">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-primary font-semibold rounded-lg transition-all duration-120 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-body-main">KYC Requests</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-bg-muted-light rounded-lg transition-all duration-120 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-body-main">Audit Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-bg-muted-light rounded-lg transition-all duration-120 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="font-body-main">Risk Engine</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-bg-muted-light rounded-lg transition-all duration-120 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-main">User Management</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-border-default-light space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-bg-muted-light rounded-lg transition-all duration-120 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-body-main">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary-light hover:bg-bg-muted-light rounded-lg transition-all duration-120 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-main">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Content Canvas with Modal Overlay -->
+<main class="ml-64 pt-16 min-h-screen bg-bg-app-light bg-mesh-gradient">
+<div class="p-page-padding-lg blur-sm pointer-events-none">
+<h1 class="font-page-title text-page-title mb-6">KYC Verification Queue</h1>
+<div class="grid grid-cols-12 gap-gap-lg">
+<div class="col-span-8 bg-bg-panel-light p-6 rounded-xl border border-border-default-light shadow-sm">
+<div class="h-96 flex items-center justify-center text-text-muted-light">
+                        Placeholder for background queue data...
+                    </div>
+</div>
+<div class="col-span-4 bg-bg-panel-light p-6 rounded-xl border border-border-default-light shadow-sm">
+<div class="h-96 flex items-center justify-center text-text-muted-light">
+                        Placeholder for analytics...
+                    </div>
+</div>
+</div>
+</div>
+<!-- Automated KYC Verification Summary Modal -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center bg-on-background/40 backdrop-blur-sm p-4">
+<div class="bg-bg-panel-light w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden border border-border-strong-light">
+<!-- Modal Header -->
+<div class="px-6 py-5 flex items-center justify-between border-b border-border-default-light bg-surface-container-low">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="security">security</span>
+<h2 class="font-section-title text-section-title text-text-primary-light">Automated Verification Summary</h2>
+</div>
+<span class="px-3 py-1 bg-success-500/10 text-success-500 font-bold rounded-full text-small-meta border border-success-500/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+                        Auto-Approved
+                    </span>
+</div>
+<div class="p-6 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Section 1: Identity Score -->
+<div class="flex flex-col items-center justify-center p-6 bg-surface-bright rounded-xl border border-border-default-light">
+<h3 class="font-small-meta text-text-muted-light uppercase tracking-widest mb-4">Identity Confidence</h3>
+<div class="relative w-32 h-32 flex items-center justify-center rounded-full circular-progress shadow-inner">
+<div class="absolute inset-2 bg-bg-panel-light rounded-full flex flex-col items-center justify-center">
+<span class="text-3xl font-bold text-text-primary-light">94%</span>
+<span class="text-small-meta text-success-500 font-semibold">High Match</span>
+</div>
+</div>
+<p class="mt-4 text-center text-body-main text-text-secondary-light">The biometric and data analysis indicates a strong identity correlation.</p>
+</div>
+<!-- Section 3: AI Validation Checks -->
+<div class="space-y-3">
+<h3 class="font-small-meta text-text-muted-light uppercase tracking-widest mb-2">AI Validation Checks</h3>
+<div class="space-y-2">
+<div class="flex items-center justify-between p-3 bg-bg-muted-light rounded-lg border border-border-default-light">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-success-500" data-icon="person_play">person_play</span>
+<span class="text-body-main font-medium">Face Liveness</span>
+</div>
+<span class="material-symbols-outlined text-success-500" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-bg-muted-light rounded-lg border border-border-default-light">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-success-500" data-icon="description">description</span>
+<span class="text-body-main font-medium">Document Authenticity</span>
+</div>
+<span class="material-symbols-outlined text-success-500" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-bg-muted-light rounded-lg border border-border-default-light">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-success-500" data-icon="grid_view">grid_view</span>
+<span class="text-body-main font-medium">Template Match</span>
+</div>
+<span class="material-symbols-outlined text-success-500" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-bg-muted-light rounded-lg border border-border-default-light">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-success-500" data-icon="detector_status">detector_status</span>
+<span class="text-body-main font-medium">Anti-Spoofing</span>
+</div>
+<span class="material-symbols-outlined text-success-500" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: OCR Extraction Data -->
+<div>
+<h3 class="font-small-meta text-text-muted-light uppercase tracking-widest mb-4">OCR Extraction Data</h3>
+<div class="grid grid-cols-1 gap-[1px] bg-border-default-light rounded-xl overflow-hidden border border-border-default-light">
+<div class="flex items-center bg-bg-panel-light p-4 gap-4">
+<span class="w-1/3 text-small-meta text-text-muted-light">Extracted Name</span>
+<div class="flex-1 flex items-center justify-between">
+<span class="text-body-main font-semibold">Rakibul Hasan</span>
+<span class="text-small-meta bg-primary/10 text-primary px-2 py-0.5 rounded border border-primary/20">Match: 100%</span>
+</div>
+</div>
+<div class="flex items-center bg-bg-panel-light p-4 gap-4">
+<span class="w-1/3 text-small-meta text-text-muted-light">ID Number</span>
+<div class="flex-1 flex items-center justify-between">
+<span class="font-data-mono text-data-mono">5529182371902</span>
+<span class="text-small-meta text-success-500 flex items-center gap-1">Valid Format</span>
+</div>
+</div>
+<div class="flex items-center bg-bg-panel-light p-4 gap-4">
+<span class="w-1/3 text-small-meta text-text-muted-light">Date of Birth</span>
+<div class="flex-1 flex items-center justify-between">
+<span class="text-body-main font-semibold">14 Oct 1994</span>
+<span class="text-small-meta text-info-500 flex items-center gap-1">Consistent</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Security Metadata -->
+<div class="flex items-center justify-between px-4 py-3 bg-surface-container-lowest rounded-lg border border-dashed border-border-strong-light">
+<div class="flex gap-6">
+<div class="flex flex-col">
+<span class="text-[10px] text-text-muted-light uppercase font-bold">Processing Time</span>
+<span class="text-body-main font-data-mono">1.4s</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-text-muted-light uppercase font-bold">Engine Version</span>
+<span class="text-body-main font-data-mono">V2.4-Lambda</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-text-muted-light italic text-small-meta">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+                            Encrypted Audit Trail
+                        </div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-6 py-5 bg-surface-container-low border-t border-border-default-light flex justify-end gap-md">
+<button class="px-5 py-2 text-text-secondary-light font-semibold hover:bg-bg-muted-light rounded-lg transition-all duration-120 active:scale-95">
+                        Close
+                    </button>
+<button class="px-5 py-2 bg-primary text-on-primary font-bold rounded-lg shadow-md hover:bg-primary-container transition-all duration-120 active:scale-95 flex items-center gap-2">
+                        View Full Profile
+                        <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
