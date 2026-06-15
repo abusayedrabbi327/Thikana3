@@ -171,6 +171,21 @@ export default function Home() {
   const [aiRecommendations, setAiRecommendations] = useState([])
   const [aiSummary, setAiSummary] = useState('')
   const [loadingRecommendations, setLoadingRecommendations] = useState(false)
+  const [showAiRecs, setShowAiRecs] = useState(() => {
+    try {
+      return localStorage.getItem('show_ai_recs') !== 'false'
+    } catch (e) {
+      return true
+    }
+  })
+
+  const handleToggleAiRecs = () => {
+    const newVal = !showAiRecs
+    setShowAiRecs(newVal)
+    try {
+      localStorage.setItem('show_ai_recs', String(newVal))
+    } catch (e) { /* ignore */ }
+  }
 
   useEffect(() => {
     if (!user) {
@@ -519,6 +534,14 @@ export default function Home() {
                     <X size={12} /> Clear filters
                   </button>
                 )}
+                {user && (
+                  <button onClick={handleToggleAiRecs}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium transition-all
+            ${showAiRecs ? 'border-theme-primary/40 text-theme-primary bg-theme-primary/5 dark:bg-orange-950/15' : 'border-theme-border text-theme-muted bg-theme-card hover:border-theme-primary/30'}`}>
+                    <Sparkles size={14} className={showAiRecs ? "text-theme-primary animate-pulse" : ""} />
+                    <span>{showAiRecs ? 'Hide AI Recommendations' : 'Show AI Recommendations'}</span>
+                  </button>
+                )}
               </div>
               <div className="flex items-center gap-2">
                 {products.length > 0 && (
@@ -606,7 +629,7 @@ export default function Home() {
             ) : products.length > 0 ? (
               <div className="animate-fade-in space-y-16">
                 {/* AI-Powered Recommendations Section */}
-                {user && aiRecommendations.length > 0 && (
+                {user && showAiRecs && (
                   <section className="p-6 sm:p-8 rounded-[36px] bg-theme-primary/5 dark:bg-orange-950/10 border border-theme-primary/10 dark:border-orange-950/20 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-theme-primary/10 rounded-full blur-3xl pointer-events-none" />
                     
@@ -616,21 +639,54 @@ export default function Home() {
                           <Sparkles size={14} className="animate-pulse" /> AI-Powered Recommendations
                         </div>
                         <h2 className="text-2xl font-black text-theme-text">Curated For You</h2>
-                        {aiSummary && <p className="text-theme-muted text-xs mt-1.5 max-w-xl">{aiSummary}</p>}
+                        {!loadingRecommendations && aiSummary && <p className="text-theme-muted text-xs mt-1.5 max-w-xl">{aiSummary}</p>}
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 relative z-10">
-                      {aiRecommendations.map((prod) => (
-                        <div key={prod.id} className="relative group/rec col-span-1">
-                          <SmallProductCard product={prod} />
-                          {prod.ai_reason && (
-                            <div className="mt-2 text-[10px] text-theme-primary font-bold bg-theme-primary/10 px-3.5 py-1.5 rounded-xl w-fit">
-                              {prod.ai_reason}
+                    {loadingRecommendations ? (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 relative z-10">
+                        {[1, 2, 3].map(i => (
+                          <div key={i} className="bg-theme-card rounded-[28px] overflow-hidden border border-theme-border flex flex-col h-72">
+                            <div className="bg-theme-border/30 h-40 animate-pulse" />
+                            <div className="p-4 flex-1 flex flex-col gap-2">
+                              <div className="h-4 w-3/4 bg-theme-border/40 rounded animate-pulse" />
+                              <div className="h-3 w-1/2 bg-theme-border/30 rounded animate-pulse" />
+                              <div className="h-8 bg-theme-border/30 rounded mt-auto animate-pulse" />
                             </div>
-                          )}
-                        </div>
-                      ))}
+                          </div>
+                        ))}
+                      </div>
+                    ) : aiRecommendations.length > 0 ? (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 relative z-10">
+                        {aiRecommendations.map((prod) => (
+                          <div key={prod.id} className="relative group/rec col-span-1">
+                            <SmallProductCard product={prod} />
+                            {prod.ai_reason && (
+                              <div className="mt-2 text-[10px] text-theme-primary font-bold bg-theme-primary/10 px-3.5 py-1.5 rounded-xl w-fit">
+                                {prod.ai_reason}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="p-6 rounded-2xl bg-theme-card/65 border border-theme-border/50 text-center max-w-xl mx-auto my-4 shadow-sm relative z-10">
+                        <Sparkles size={32} className="mx-auto text-theme-primary/40 mb-3" />
+                        <h3 className="text-sm font-bold text-theme-text mb-1">Not enough data yet</h3>
+                        <p className="text-theme-muted text-xs leading-relaxed">
+                          We don't have enough browsing data or favorites to personalize recommendations for you yet. 
+                          Try adding some items to your favorites or completing orders, and our AI will curate items for you!
+                        </p>
+                      </div>
+                    )}
+
+                    <div className="mt-6 pt-4 border-t border-theme-border/50 relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-3 text-xs text-theme-muted">
+                      <div className="flex items-center gap-1.5 text-theme-primary font-bold bg-theme-primary/10 px-2.5 py-1 rounded-full flex-shrink-0">
+                        <Sparkles size={12} /> How it works
+                      </div>
+                      <p className="leading-relaxed">
+                        Our recommendation engine uses **Google Gemini AI** to match your preferences (like location, role, and favorites) with products in our database, dynamically tailoring explanations for each suggestion.
+                      </p>
                     </div>
                   </section>
                 )}

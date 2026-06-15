@@ -78,20 +78,12 @@ function ensureImageDimensions(metadata, { minWidth = 240, minHeight = 180, maxR
  * @returns {string} The public URL path of the saved image.
  */
 function saveBase64Image(base64Str, dir, filenamePrefix, options = {}) {
+  // Validate the base64 image content first
   const { type, buffer, metadata } = parseBase64Image(base64Str, options);
   ensureImageDimensions(metadata);
 
-  const filename = `${filenamePrefix}-${Date.now()}.${type}`;
-  const dirPath = path.join(__dirname, '..', 'uploads', dir);
-  
-  // Ensure the directory exists
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
-  
-  const filepath = path.join(dirPath, filename);
-  fs.writeFileSync(filepath, buffer);
-  return `/uploads/${dir}/${filename}`;
+  // Return the base64 data URL string directly so it gets saved in the database
+  return base64Str;
 }
 
 function saveSecureBase64Image(base64Str, dir, filenamePrefix, options = {}) {
