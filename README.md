@@ -1,123 +1,150 @@
-# Thikana 🏠
+# Thikana Marketplace
 
-**Thikana** is a comprehensive product marketplace and property listing platform. It allows users to buy, sell, and rent items and properties with ease. The platform features role-based access control, real-time messaging, secure transactions, and NID verification for enhanced trust and safety.
+Thikana is a comprehensive real estate rental, sale, and product marketplace platform. It allows users to browse, list, buy, sell, and rent products or properties. The application features full role-based access controls, NID identity verification powered by optical character recognition (OCR), real-time messaging supporting multimedia attachments, and intelligent AI assistant recommendations.
 
-## 🚀 Features
+## Core Features
 
-- **Multi-Category Marketplace**: Support for furniture, appliances, electronics, house rentals, and more.
-- **Role-Based Access**: Specialized functionality for **Buyers**, **Sellers**, and **Admins**.
-- **Real-Time Communication**: Integrated chat system powered by Socket.io, supporting text and voice messages.
-- **Identity Verification**: Built-in NID verification pipeline to ensure user authenticity.
-- **Order Management**: Shopping cart system, checkout process, and order tracking.
-- **Product Reviews**: Verified buyer review and rating system.
-- **Admin Dashboard**: Tools for managing users, approving listings, and monitoring platform activity.
-- **Responsive Design**: Modern and sleek UI built with Tailwind CSS.
+- Multi-Category Marketplace: Dedicated listing pipelines for furniture, home appliances, flats for sale, and houses for rent.
+- Role-Based Access Control: Specialized user dashboards tailored for Buyers, Sellers, and Administrators.
+- Real-Time Messaging: Integrated communication system powered by Socket.io, supporting text, image, and voice messages.
+- Identity Verification: NID validation workflow incorporating Tesseract OCR text extraction and selfie face match scoring.
+- AI Assistant: Intelligent conversational recommendations and product comparisons powered by Google Gemini 2.5 Flash.
+- Order and Booking Management: Shopping cart, checkout processing, and advance property booking systems.
+- Moderation Console: Interactive admin console for user management, KYC verification, product moderation, and activity tracking.
+- Interactive Maps: OpenStreetMap integration via Leaflet for precise geocoding of property locations.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
-- **Framework**: React 19 (Vite)
-- **Styling**: Tailwind CSS
-- **State Management**: React Context API
-- **Icons**: Lucide React
-- **Real-time**: Socket.io-client
+- Core Framework: React 19 (Vite)
+- Styling: Vanilla CSS and Tailwind CSS
+- State Management: React Context API
+- Router: React Router DOM
+- Mapping: Leaflet & React Leaflet
+- Real-Time Communication: Socket.io Client
+- Icon Pack: Lucide React
 
 ### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MySQL
-- **Real-time**: Socket.io
-- **File Handling**: Multer
-- **Email**: Nodemailer
-- **Authentication**: JWT & Bcryptjs
+- Runtime Environment: Node.js
+- Framework: Express.js
+- Database: PostgreSQL (via pg pool connected to Supabase)
+- Real-Time Server: Socket.io
+- OCR & Imaging: Tesseract.js & Multer
+- Email Delivery: Nodemailer
+- Authentication: JSON Web Token (JWT) & Bcryptjs
 
-## 📦 Getting Started
+## Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (Latest LTS)
-- [XAMPP](https://www.apachefriends.org/) (for MySQL)
+- Node.js (v18 or higher recommended)
+- PostgreSQL database instance (local or hosted on Supabase)
+- SMTP account configuration (e.g. Gmail App Password for email notifications)
+- Google Gemini API Key (for the AI recommendation assistant)
 
 ### Installation
 
-1. **Clone the repository**
+1. Clone the Repository
    ```bash
    git clone https://github.com/Spectre07Siuuu/Thikana.git
    cd Thikana
    ```
 
-2. **Frontend Setup**
+2. Frontend Dependencies Setup
    ```bash
-   # Install dependencies
    npm install
-
-   # Run development server
-   npm run dev
    ```
 
-3. **Backend Setup**
+3. Backend Dependencies Setup
    ```bash
    cd server
-   
-   # Install dependencies
    npm install
    ```
 
-### ⚙️ Environment Configuration
+### Environment Configuration
 
-Create a `.env` file in the `server` directory based on `.env.example`:
+Create a `.env` file inside the `server/` directory. Refer to `server/.env.example` as a template:
 
 ```env
+DATABASE_URL=your_postgresql_connection_string
+JWT_SECRET=your_jwt_secret_key
+JWT_EXPIRES_IN=7d
 PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASS=
-DB_NAME=thikana_db
-JWT_SECRET=your_jwt_secret
+CLIENT_URL=http://localhost:5173
+
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your_smtp_username@gmail.com
+SMTP_PASS=your_smtp_app_password
+SMTP_FROM="Thikana Marketplace" <your_smtp_username@gmail.com>
+
+GEMINI_API_KEY=your_google_gemini_api_key
 ```
 
-### 🗄️ Database Setup
+### Database Initialization & Migration
 
-1. Start **Apache** and **MySQL** via XAMPP.
-2. Create a database named `thikana_db` in phpMyAdmin.
-3. Run the migrations:
+1. Run the database migration script to construct all database tables:
    ```bash
    cd server
    npm run migrate
    ```
-4. (Optional) Seed initial data:
+
+2. Seed realistic demo data (Users, Admin, and 100+ listings with precise mapping coordinates):
    ```bash
-   node seed_realistic.js
+   npm run seed:fresh
    ```
 
-5. **Start the backend server**
-   ```bash
-   npm run dev
-   ```
+### Running the Application
 
-## 📂 Project Structure
+Both the frontend client and backend server must run concurrently.
+
+#### Start Backend Service
+```bash
+cd server
+npm run dev
+```
+
+#### Start Frontend Client
+From the root directory:
+```bash
+npm run dev
+```
+
+The application will be accessible at `http://localhost:5173`.
+
+## Login Credentials for Testing
+
+Use the following seeded accounts to verify different roles in the platform:
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| Admin | admin@thikana.com | 223236 |
+| Seller | iqram@gmail.com | 123456 |
+| Buyer | sazzad@gmail.com | 123456 |
+
+## Project Structure
 
 ```text
 Thikana/
-├── server/             # Express.js Backend
-│   ├── config/         # Database and app config
-│   ├── controllers/    # Route controllers
-│   ├── db/             # Migrations and seeders
-│   ├── routes/         # API endpoints
-│   └── uploads/        # User-uploaded images/audio
-└── src/                # React Frontend
-    ├── components/     # Reusable UI components
-    ├── context/        # State management (Auth, Cart)
-    ├── pages/          # Page components
-    └── services/       # API interaction layer
+├── server/                 # Express.js Backend
+│   ├── config/             # Database and application configuration
+│   ├── controllers/        # Route logic and handlers
+│   ├── db/                 # SQL schemas, migrations, and database seeders
+│   ├── middleware/         # Auth, role-checks, and error limiters
+│   ├── routes/             # REST API routes
+│   └── services/           # External service layers (AI, KYC, Emails)
+└── src/                    # React Frontend
+    ├── components/         # Reusable UI components
+    ├── context/            # Global state context providers
+    ├── pages/              # Primary route view components
+    └── services/           # Frontend fetch wrapper and API actions
 ```
 
-## 🤝 Contributing
+## Available Scripts
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 🗺️ Future Roadmap
-
-- **Automated NID Verification**: Integration with OCR APIs (like Google Cloud Vision or specialized local APIs) to automate identity validation.
-- **Dynamic Delivery API**: Integration with local logistics providers (e.g., RedX, Pathao) for real-time delivery fee calculation and automated courier booking.
-- **Payment Gateway Integration**: Adding support for SSLCommerz, Stripe, or bKash PGW to enable automated online payments.
-- **Advanced Admin Controls**: User suspension, fine-grained role management, and dispute resolution dashboards.
+Inside the `server/` directory, you can run the following helper scripts:
+- `npm run dev`: Starts the backend using Nodemon for hot-reloads.
+- `npm run start`: Starts the production backend.
+- `npm run migrate`: Executes schema migration script against PostgreSQL.
+- `npm run seed:fresh`: Fully clears and seeds a fresh set of realistic mock data.
+- `npm run seed:realistic`: Randomizes and updates all product marketplace data while keeping user accounts intact.
