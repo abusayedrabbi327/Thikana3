@@ -468,7 +468,7 @@ async function getAdminUsers(req, res) {
 
     const params = [searchTerm, req.user.id, numericSearchId]
     const conditions = [
-      '($1 = \'%%\' OR u.full_name ILIKE $1 OR u.email ILIKE $1 OR ($3 IS NOT NULL AND u.id = $3))',
+      '($1 = \'%%\' OR u.full_name ILIKE $1 OR u.email ILIKE $1 OR ($3::int IS NOT NULL AND u.id = $3::int))',
       '(u.id <> $2 OR u.is_admin = false)',
     ]
     if (role !== 'all') {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
-import { useSearchParams, useNavigate } from 'react-router-dom'
+import { useSearchParams, useNavigate, Link } from 'react-router-dom'
 import {
  ArrowLeft, Send, MessageSquare, Search, ShieldCheck,
  Paperclip, Smile, Mic, X, Image as ImageIcon, FileText,
@@ -41,6 +41,67 @@ const formatDate = (d) => {
  if (diff < 86400000) return 'Today'
  if (diff < 172800000) return 'Yesterday'
  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+const renderMessageContent = (text, isMine) => {
+ if (typeof text !== 'string') return text
+
+ // Match absolute URL strings starting with http/https
+ const urlRegex = /(https?:\/\/[^\s]+)/g
+ const parts = []
+ let lastIndex = 0
+ let match
+
+ while ((match = urlRegex.exec(text)) !== null) {
+  const fullUrl = match[0]
+  const index = match.index
+
+  if (index > lastIndex) {
+   parts.push(text.slice(lastIndex, index))
+  }
+
+  let isLocal = false
+  let localPath = ''
+  try {
+   const parsedUrl = new URL(fullUrl)
+   if (parsedUrl.origin === window.location.origin) {
+    isLocal = true
+    localPath = parsedUrl.pathname + parsedUrl.search + parsedUrl.hash
+   }
+  } catch (e) {}
+
+  const linkClass = isMine
+   ? 'underline text-orange-200 hover:text-white transition-colors font-semibold'
+   : 'underline text-theme-primary hover:text-orange-600 transition-colors font-semibold'
+
+  if (isLocal) {
+   parts.push(
+    <Link key={index} to={localPath} className={linkClass}>
+     {fullUrl}
+    </Link>
+   )
+  } else {
+   parts.push(
+    <a key={index} href={fullUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
+     {fullUrl}
+    </a>
+   )
+  }
+
+  lastIndex = index + fullUrl.length
+ }
+
+ if (lastIndex < text.length) {
+  parts.push(text.slice(lastIndex))
+ }
+
+ return parts.length > 0 ? (
+  <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
+   {parts.map((p, i) => p)}
+  </p>
+ ) : (
+  <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">{text}</p>
+ )
 }
 
 export default function Messages() {
@@ -506,7 +567,7 @@ export default function Messages() {
                     ? 'bg-theme-primary text-white rounded-br-md'
                     : 'bg-white dark:bg-gray-800 text-theme-text border border-theme-border rounded-bl-md'
                   } shadow-sm`}>
-                   <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">{msg.content}</p>
+                   {renderMessageContent(msg.content, isMine)}
                   </div>
                  )}
                  {/* Timestamp + read receipt */}
