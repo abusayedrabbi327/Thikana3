@@ -24,11 +24,16 @@ export default function Chatbot() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   
-  const chatEndRef = useRef(null)
+  const chatContainerRef = useRef(null)
 
   // Scroll to bottom on new messages
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      })
+    }
   }, [messages, loading])
 
   const handleSend = async (textToSend) => {
@@ -153,7 +158,10 @@ export default function Chatbot() {
           {/* Main Chat Area */}
           <div className="glass-panel flex-1 flex flex-col overflow-hidden min-h-[460px] max-h-[580px] rounded-[32px]">
             {/* Messages body */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 scrollbar-thin">
+            <div 
+              ref={chatContainerRef}
+              className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 scrollbar-thin"
+            >
               {messages.map((msg) => {
                 const isBot = msg.sender === 'bot'
                 return (
@@ -194,7 +202,6 @@ export default function Chatbot() {
                   </div>
                 </div>
               )}
-              <div ref={chatEndRef} />
             </div>
 
             {/* Quick Suggestions Chips */}
